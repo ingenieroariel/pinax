@@ -146,7 +146,7 @@ LOGIN_REDIRECT_URLNAME = "what_next"
 
 # whether openid is to be supported or not
 ACCOUNT_SUPPORTS_OPENID = True
-
+ACCOUNT_ALLOW_SIGNUP = True
 
 # local_settings.py can be used to override environment-specific settings
 # like database and email that differ between development and production.

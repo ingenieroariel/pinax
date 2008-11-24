@@ -1,9 +1,9 @@
+from django.conf import settings
 from django.conf.urls.defaults import *
 from account.forms import *
 
 urlpatterns = patterns('',
     url(r'^email/$', 'account.views.email', name="acct_email"),
-    url(r'^signup/$', 'account.views.signup', name="acct_signup"),
     url(r'^login/$', 'account.views.login', name="acct_login"),
     url(r'^password_change/$', 'account.views.password_change', name="acct_passwd"),
     url(r'^password_set/$', 'account.views.password_set', name="acct_passwd_set"),
@@ -19,6 +19,12 @@ urlpatterns = patterns('',
     
     url(r'^confirm_email/(\w+)/$', 'emailconfirmation.views.confirm_email', name="acct_confirm_email"),
 
-    # ajax validation
-    (r'^validate/$', 'ajax_validation.views.validate', {'form_class': SignupForm}, 'signup_form_validate'),
 )
+
+if settings.ACCOUNT_ALLOW_SIGNUP:
+    urlpatterns += patterns('',
+        url(r'^signup/$', 'account.views.signup', name="acct_signup"),
+        
+        # ajax validation
+        (r'^validate/$', 'ajax_validation.views.validate', {'form_class': SignupForm}, 'signup_form_validate'),
+    )

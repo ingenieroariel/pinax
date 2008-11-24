@@ -16,4 +16,7 @@ def account(request):
     return {'account': account}
 
 def account_settings(request):
-    return {'account_supports_openid': settings.ACCOUNT_SUPPORTS_OPENID}
+    return {
+        'account_supports_openid': settings.ACCOUNT_SUPPORTS_OPENID,
+        'account_allow_signup': settings.ACCOUNT_ALLOW_SIGNUP,
+    }
