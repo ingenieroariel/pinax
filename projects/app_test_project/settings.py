@@ -93,6 +93,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "announcements.context_processors.site_wide_announcements",
     "account.context_processors.openid",
     "account.context_processors.account",
+    "account.context_processors.account_settings",
     "misc.context_processors.contact_email",
     "misc.context_processors.site_name",
 )
@@ -139,6 +140,13 @@ CONTACT_EMAIL = "feedback@example.com"
 SITE_NAME = "Pinax"
 LOGIN_URL = "/account/login"
 LOGIN_REDIRECT_URLNAME = "what_next"
+
+
+## ACCOUNT SETTINGS
+
+# whether openid is to be supported or not
+ACCOUNT_SUPPORTS_OPENID = True
+
 
 # local_settings.py can be used to override environment-specific settings
 # like database and email that differ between development and production.
