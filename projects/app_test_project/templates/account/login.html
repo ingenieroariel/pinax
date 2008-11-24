@@ -13,8 +13,10 @@
         {% if user.is_authenticated %}
             <p><span class="warning">{% trans "Note" %}</span>: {% blocktrans %}you are already logged in as {{ user }}.{% endblocktrans %}</p>
         {% else %}
-            {% url account.views.signup as signup_url %}
-            <p>{% blocktrans %}Don't have an account? <a href="{{ signup_url }}">Sign up</a>!{% endblocktrans %}</p>
+            {% if account_allow_signup %}
+                {% url account.views.signup as signup_url %}
+                <p>{% blocktrans %}Don't have an account? <a href="{{ signup_url }}">Sign up</a>!{% endblocktrans %}</p>
+            {% endif %}
         {% endif %}
         
         <form class="login" method="POST" action="">

@@ -17,9 +17,13 @@
     
     {% if user.is_authenticated %}
     {% else %}
-        {% url acct_signup as signup_url %}
         {% url acct_login as login_url %}
-        <p>{% blocktrans %}You can <a href="{{ signup_url }}">Sign up</a> and <a href="{{ login_url }}">Log in</a> to try out the site.{% endblocktrans %}</p>
+        {% if account_allows_signup %}
+            {% url acct_signup as signup_url %}
+            <p>{% blocktrans %}You can <a href="{{ signup_url }}">Sign up</a> and <a href="{{ login_url }}">Log in</a> to try out the site.{% endblocktrans %}</p>
+        {% else %}
+        <p>{% blocktrans %}You can <a href="{{ login_url }}">Log in</a> to try out the site.{% endblocktrans %}</p>
+        {% endif %}
     {% endif %}
     
 {% endblock %}

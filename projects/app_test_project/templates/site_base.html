@@ -9,7 +9,7 @@
     {% if user.is_authenticated %}
         {% if account_supports_openid %}{% openid_icon openid user %}{% endif %}<b>{{ user }}</b> | <a href="{% url acct_email %}">{% trans "Account" %}</a> | {% if user.is_staff %}<a href="/admin/">{% trans "Admin" %}</a> | {% endif %}{% if account_supports_openid %}<a href="/openid/logout/?next={% url acct_logout %}">{% trans "Logout" %}</a>{% else %}<a href="{% url acct_logout %}">{% trans "Logout" %}</a>{% endif %}
     {% else %}
-        <a href="{% url acct_login %}">{% trans "Login" %}</a> {% trans "or" %} <a href="{% url acct_signup %}"><b>{% trans "Sign up" %}</b></a>
+        <a href="{% url acct_login %}">{% trans "Login" %}</a> {% if account_allows_signup %}{% trans "or" %} <a href="{% url acct_signup %}"><b>{% trans "Sign up" %}</b></a>{% endif %}
     {% endif %}
 {% endblock %}
 
