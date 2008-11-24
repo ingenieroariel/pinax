@@ -15,13 +15,18 @@ urlpatterns = patterns('',
     
     (r'^about/', include('about.urls')),
     (r'^account/', include('account.urls')),
-    (r'^openid/(.*)', PinaxConsumer()),
     (r'^profiles/', include('basic_profiles.urls')),
     (r'^notices/', include('notification.urls')),
     (r'^announcements/', include('announcements.urls')),
     
     (r'^admin/(.*)', admin.site.root),
 )
+
+if settings.ACCOUNT_SUPPORTS_OPENID:
+    urlpatterns += patterns('',
+        # @@@ should we just put OpenID URLs under /account/openid and move this to account.urls?
+        (r'^openid/(.*)', PinaxConsumer()), 
+    )
 
 if settings.SERVE_MEDIA:
     urlpatterns += patterns('',
