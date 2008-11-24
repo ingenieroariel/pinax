@@ -1,3 +1,4 @@
+from django.conf import settings
 
 from account.models import Account, AnonymousAccount
 
@@ -13,3 +14,6 @@ def account(request):
     else:
         account = AnonymousAccount(request)
     return {'account': account}
+
+def account_settings(request):
+    return {'account_supports_openid': settings.ACCOUNT_SUPPORTS_OPENID}
