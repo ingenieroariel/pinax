@@ -121,6 +121,7 @@ INSTALLED_APPS = (
     'misc',
     
     'about',
+    'groups',
     
     'django.contrib.admin',
 

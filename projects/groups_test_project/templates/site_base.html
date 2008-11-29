@@ -27,6 +27,9 @@
         <table>
             <tr>
                 <td class="tab rtab_profile"><div><a href="{% url profile_detail user %}">{% trans "Profile" %}</a></div></td>
+                <td class="tab rtab_a_group"><div><a href='{% url group_list "a" %}'>{% trans "A-Groups" %}</a></div></td>
+                <td class="tab rtab_b_group"><div><a href='{% url group_list "b" %}'>{% trans "B-Groups" %}</a></div></td>
+                <td class="tab rtab_c_group"><div><a href='{% url group_list "c" %}'>{% trans "C-Groups" %}</a></div></td>
                 <td class="tab rtab_notices"><div><a href="{% url notification.views.notices %}">{% trans "Notices" %}{% if notice_unseen_count %} ({{ notice_unseen_count }}){% endif %}</a></div></td>
             </tr>
         </table>

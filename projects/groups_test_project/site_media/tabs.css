@@ -44,6 +44,7 @@
 
 #home_tab .tab_home,
 #profile_tab .rtab_profile,
+#a_group_tab .rtab_a_group,
 #notices_tab .rtab_notices
 {
     bottom: -1px !important;
@@ -51,12 +52,14 @@
 }
 #home_tab .tab_home a,
 #profile_tab .rtab_profile a,
+#a_group_tab .rtab_a_group a,
 #notices_tab .rtab_notices a
 {
     color: #000 !important; /* selected tab text colour */
 }
 #home_tab .tab_home div,
 #profile_tab .rtab_profile div,
+#a_group_tab .rtab_a_group div,
 #notices_tab .rtab_notices div
 {
     margin: 0;
