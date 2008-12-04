@@ -1,0 +1,29 @@
+{% extends "tribes/base.html" %}
+
+{% load i18n %}
+{% load humanize %}
+{% load pagination_tags %}
+{% load order_by %}
+{% load extra_tagging_tags %}
+{% load tribe_tags %}
+
+{% block head_title %}{% blocktrans %}Create Tribe{% endblocktrans %}{% endblock %}
+
+{% block body %}
+    <h1>{% trans "Create Tribe" %}</h1>
+    
+    <p>{% trans "A <b>tribe</b> is a group of people with some common interest." %}</p>
+    {% if user.is_authenticated %}
+        <form id="tribe_form" method="POST" action="{% url tribe_create %}">
+            <table>
+                {{ tribe_form }}
+                <tr><td></td><td><input type="hidden" name="action" value="create" /><input type="submit" value="{% trans 'create' %}"/></td></tr>
+            </table>
+        </form>
+    {% else %}
+        {% url acct_signup as signup_url %}
+        {% url acct_login as login_url %}
+        <p>{% blocktrans %}<a href="{{ signup_url }}">Sign up</a> and <a href="{{ login_url }}">log in </a> to create your own tribe or join an existing one.{% endblocktrans %}</p>
+    {% endif %}
+    
+{% endblock %}

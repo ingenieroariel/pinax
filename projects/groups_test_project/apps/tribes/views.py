@@ -14,28 +14,28 @@ try:
 except ImportError:
     notification = None
 
-try:
-    from friends.models import Friendship
-    friends = True
-except ImportError:
-    friends = False
+# @@@ try:
+# @@@     from friends.models import Friendship
+# @@@     friends = True
+# @@@ except ImportError:
+# @@@     friends = False
 
-try:
-    from threadedcomments.models import ThreadedComment
-    forums = True
-except ImportError:
-    forums = False
+# @@@ try:
+# @@@     from threadedcomments.models import ThreadedComment
+# @@@     forums = True
+# @@@ except ImportError:
+# @@@     forums = False
 
-try:
-    from wiki.models import Article
-    from wiki.views import get_ct
-    wiki = True
-except ImportError:
-    wiki = False
+# @@@ try:
+# @@@     from wiki.models import Article
+# @@@     from wiki.views import get_ct
+# @@@     wiki = True
+# @@@ except ImportError:
+# @@@     wiki = False
 
-from microblogging.models import TweetInstance
+# @@@ from microblogging.models import TweetInstance
 
-from schedule.models import Calendar, CalendarRelation
+# @@@ from schedule.models import Calendar, CalendarRelation
 
 def create(request, form_class=TribeForm, template_name="tribes/create.html"):
     if request.user.is_authenticated() and request.method == "POST":
@@ -49,14 +49,14 @@ def create(request, form_class=TribeForm, template_name="tribes/create.html"):
                 tribe.save()
                 # @@@ this is just temporary to give tribes a single calendar -- will revisit during whole
                 # tribe/project merge effort
-                calendar = Calendar(name = "%s Calendar" % tribe.name)
-                calendar.save()
-                CalendarRelation.objects.create_relation(calendar, tribe, distinction="default", inheritable=True)
+                # @@@ calendar = Calendar(name = "%s Calendar" % tribe.name)
+                # @@@ calendar.save()
+                # @@@ CalendarRelation.objects.create_relation(calendar, tribe, distinction="default", inheritable=True)
                 if notification:
                     # @@@ might be worth having a shortcut for sending to all users
                     notification.send(User.objects.all(), "tribes_new_tribe", {"tribe": tribe}, queue=True)
-                    if friends: # @@@ might be worth having a shortcut for sending to all friends
-                        notification.send((x['friend'] for x in Friendship.objects.friends_for_user(tribe.creator)), "tribes_friend_tribe", {"tribe": tribe})
+                    # @@@ if friends: # @@@ might be worth having a shortcut for sending to all friends
+                    # @@@     notification.send((x['friend'] for x in Friendship.objects.friends_for_user(tribe.creator)), "tribes_friend_tribe", {"tribe": tribe})
                 #return render_to_response("base.html", {
                 #}, context_instance=RequestContext(request))
                 return HttpResponseRedirect(tribe.get_absolute_url())
@@ -98,7 +98,7 @@ def tribe(request, slug, form_class=TribeUpdateForm,
     if tribe.deleted:
         raise Http404
     
-    photos = tribe.photos.all()
+    # @@@ photos = tribe.photos.all()
     
     if request.user.is_authenticated() and request.method == "POST":
         if request.POST["action"] == "update" and request.user == tribe.creator:
@@ -124,24 +124,24 @@ def tribe(request, slug, form_class=TribeUpdateForm,
         tribe_form = form_class(instance=tribe)
     
     topics = tribe.topics.all()[:5]
-    articles = Article.objects.filter(
-        content_type=get_ct(tribe),
-        object_id=tribe.id).order_by('-last_update')
-    total_articles = articles.count()
-    articles = articles[:5]
+# @@@     articles = Article.objects.filter(
+# @@@         content_type=get_ct(tribe),
+# @@@         object_id=tribe.id).order_by('-last_update')
+# @@@     total_articles = articles.count()
+# @@@     articles = articles[:5]
     
-    tweets = TweetInstance.objects.tweets_for(tribe).order_by("-sent")
+# @@@     tweets = TweetInstance.objects.tweets_for(tribe).order_by("-sent")
     
     are_member = request.user in tribe.members.all()
     
     return render_to_response(template_name, {
         "tribe_form": tribe_form,
         "tribe": tribe,
-        "photos": photos,
+# @@@         "photos": photos,
         "topics": topics,
-        "articles": articles,
-        "tweets": tweets,
-        "total_articles": total_articles,
+# @@@         "articles": articles,
+# @@@         "tweets": tweets,
+# @@@         "total_articles": total_articles,
         "are_member": are_member,
     }, context_instance=RequestContext(request))
 

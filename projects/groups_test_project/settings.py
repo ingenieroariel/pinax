@@ -114,6 +114,8 @@ INSTALLED_APPS = (
     'pagination',
     'timezones',
     'ajax_validation',
+    'threadedcomments',
+    
     
     # internal (for now)
     'basic_profiles',
@@ -122,6 +124,12 @@ INSTALLED_APPS = (
     
     'about',
     'groups',
+    'tribes',
+    'projects',
+    
+    'tagging',
+    'tag_app',
+    'things',
     
     'django.contrib.admin',
 

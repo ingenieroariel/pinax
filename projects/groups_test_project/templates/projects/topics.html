@@ -1,0 +1,33 @@
+{% extends "projects/base.html" %}
+
+{% load i18n %}
+{% load pagination_tags %}
+{% load extra_tagging_tags %}
+{% load project_tags %}
+
+{% block head_title %}Topics for {{ project.name }}{% endblock %}
+
+{% block body %}
+    <h1>{% trans "Discussion Topics for Project" %} <a href="{% url project_detail project.slug %}">{{ project.name }}</a></h1>
+    
+    {% autopaginate project.topics.all %}
+    
+    {% for topic in project.topics.all %}
+        {% show_project_topic topic %}
+    {% endfor %}
+    
+    {% paginate %}
+    
+    {% if is_member %}
+        <h2>New Topic</h2>
+        
+        <form action="{% url project_topics project.slug %}" method="POST">
+            <table>
+                {{ topic_form }}
+                <tr><td><input type="submit" value="{% trans "Create New Topic" %}" /></td></tr>
+            </table>
+            <input type="hidden" name="next" value="{{ request.path }}" />
+        </form>
+    {% endif %}
+    
+{% endblock %}

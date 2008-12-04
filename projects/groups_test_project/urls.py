@@ -20,7 +20,8 @@ urlpatterns = patterns('',
     (r'^notices/', include('notification.urls')),
     (r'^announcements/', include('announcements.urls')),
     
-    (r'^groups/', include('groups.urls')),
+    (r'^tribes/', include('tribes.urls')),
+    (r'^projects/', include('projects.urls')),
     
     (r'^admin/(.*)', admin.site.root),
 )

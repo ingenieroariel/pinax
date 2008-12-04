@@ -1,0 +1,63 @@
+{% extends "tribes/base.html" %}
+
+{% load i18n %}
+{% load humanize %}
+{% load pagination_tags %}
+{% load order_by %}
+{% load extra_tagging_tags %}
+{% load tribe_tags %}
+{% load things_tags %}
+
+{% block head_title %}{% blocktrans %}Tribes{% endblocktrans %}{% endblock %}
+
+{% block body %}
+    <h1>{% trans "Tribes" %}</h1>
+    
+    <p>{% trans "A <b>tribe</b> is a group of people with some common interest." %}</p>
+    {% if user.is_authenticated %}
+        <div class="form-toggle">
+            <p><span id="start-tribe-toggle">{% trans "Start your own tribe" %}</a></p>
+            <form id="start-tribe" method="POST" action="{% url tribe_create %}">
+                {% get_tribe_form as tribe_form %}
+                <table>
+                    {{ tribe_form }}
+                    <tr><td></td><td><input type="hidden" name="action" value="create" /><input type="submit" value="{% trans 'create' %}"/></td></tr>
+                </table>
+            </form>
+        </div>
+    {% else %}
+        {% url acct_signup as signup_url %}
+        {% url acct_login as login_url %}
+        <p>{% blocktrans %}<a href="{{ signup_url }}">Sign up</a> and <a href="{{ login_url }}">log in </a> to create your own tribe or join an existing one.{% endblocktrans %}</p>
+    {% endif %}
+    {% display_search %}
+    {% display_ordering %}
+    
+    {% autopaginate objects 10 %}
+    {% if objects %}
+        <dl>
+        {% for tribe in objects %}
+            {% show_tribe tribe %}
+        {% endfor %}
+        </dl>
+        {% paginate %}
+    {% endif %}
+    
+{% endblock %}
+
+{% block extra_body %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#start-tribe').hide();
+            $('#start-tribe-toggle').click(function() {
+                $('#start-tribe').slideToggle();
+                $('#start-tribe').autoscroll();
+                return false;
+            });
+            if ($('#start-tribe ul.errorlist').length) {
+                $('#start-tribe').show();
+                $('#start-tribe ul.errorlist').autoscroll();
+            }
+        });
+    </script>
+{% endblock %}
