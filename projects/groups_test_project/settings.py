@@ -116,7 +116,6 @@ INSTALLED_APPS = (
     'ajax_validation',
     'threadedcomments',
     
-    
     # internal (for now)
     'basic_profiles',
     'account',

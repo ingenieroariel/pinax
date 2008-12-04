@@ -15,11 +15,11 @@ try:
 except ImportError:
     notification = None
 
-try:
-    from friends.models import Friendship
-    friends = True
-except ImportError:
-    friends = False
+# @@@ try:
+# @@@     from friends.models import Friendship
+# @@@     friends = True
+# @@@ except ImportError:
+# @@@     friends = False
 
 try:
     from threadedcomments.models import ThreadedComment
@@ -27,12 +27,12 @@ try:
 except ImportError:
     forums = False
 
-try:
-    from wiki.models import Article
-    from wiki.views import get_ct
-    wiki = True
-except ImportError:
-    wiki = False
+# @@@ try:
+# @@@     from wiki.models import Article
+# @@@     from wiki.views import get_ct
+# @@@     wiki = True
+# @@@ except ImportError:
+# @@@     wiki = False
 
 # from microblogging.models import TweetInstance
 
@@ -88,7 +88,7 @@ def project(request, slug, template_name="projects/project.html"):
     if project.deleted:
         raise Http404
     
-    photos = project.photos.all()
+    # @@@ photos = project.photos.all()
     
     if request.user.is_authenticated() and request.method == "POST" and request.user == project.creator:
         if request.POST["action"] == "update":
@@ -110,11 +110,11 @@ def project(request, slug, template_name="projects/project.html"):
         project_form = ProjectUpdateForm(instance=project)
     
     topics = project.topics.all()[:5]
-    articles = Article.objects.filter(
-        content_type=get_ct(project),
-        object_id=project.id).order_by('-last_update')
-    total_articles = articles.count()
-    articles = articles[:5]
+# @@@     articles = Article.objects.filter(
+# @@@         content_type=get_ct(project),
+# @@@         object_id=project.id).order_by('-last_update')
+# @@@     total_articles = articles.count()
+# @@@     articles = articles[:5]
     
     total_tasks = project.tasks.count()
     tasks = project.tasks.order_by("-modified")[:10]
@@ -127,12 +127,12 @@ def project(request, slug, template_name="projects/project.html"):
         "project_form": project_form,
         "adduser_form": adduser_form,
         "project": project,
-        "photos": photos,
+# @@@         "photos": photos,
         "topics": topics,
-        "articles": articles,
+# @@@         "articles": articles,
         "total_tasks": total_tasks,
         "tasks": tasks,
-        "total_articles": total_articles,
+# @@@         "total_articles": total_articles,
         "are_member": are_member,
     }, context_instance=RequestContext(request))
 

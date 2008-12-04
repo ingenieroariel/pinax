@@ -16,7 +16,7 @@ try:
 except ImportError:
     notification = None
 
-from wiki.views import get_articles_for_object
+# @@@ from wiki.views import get_articles_for_object
 
 # @@@ this is based on Tribes -- can we re-use anything?
 
@@ -42,9 +42,9 @@ class Project(models.Model):
     
     # @@@ photos = generic.GenericRelation(Pool)
     
-    # @@@ this might be better as a filter provided by wikiapp
-    def wiki_articles(self):
-        return get_articles_for_object(self)
+    # @@@ this might be better as a filter provided by app
+# @@@     def wiki_articles(self):
+# @@@         return get_articles_for_object(self)
     
     def has_member(self, user):
         if user.is_authenticated():

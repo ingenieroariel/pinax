@@ -20,6 +20,8 @@ urlpatterns = patterns('',
     (r'^notices/', include('notification.urls')),
     (r'^announcements/', include('announcements.urls')),
     
+    (r'^comments/', include('threadedcomments.urls')),
+    
     (r'^tribes/', include('tribes.urls')),
     (r'^projects/', include('projects.urls')),
     

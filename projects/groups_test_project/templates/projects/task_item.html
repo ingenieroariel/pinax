@@ -1,13 +1,13 @@
 {% load i18n %}
 {% load extra_tagging_tags %}
-{% load avatar_tags %}
+{# {% load avatar_tags %} #}
 {% load shorttimesince_tag %}
 {% load threadedcommentstags %}
 
 <div class="task clearfix">
     <div class="task-meta">
         {% if task.assignee %}
-            <div class="avatar">{% avatar task.assignee 40 %}</div>
+            <div class="avatar">{# @@@ {% avatar task.assignee 40 %} #}</div>
             <div class="details"><b>{% trans "Assignee" %}</b>: <a href="{{ task.assignee.get_profile.get_absolute_url }}">{{ task.assignee }}</a></div>
         {% else %}
             <span class="warning">{% trans "Unassigned" %}</span>
