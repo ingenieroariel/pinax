@@ -1,7 +1,7 @@
 {% extends "microblogging/base.html" %}
 
 {% load i18n %}
-{% load microblogging %}
+{% load microblogging_tags %}
 
 {% block head_title %}{% blocktrans %}Tweets{% endblocktrans %}{% endblock %}
 
@@ -20,12 +20,6 @@
         <h2>{% trans "You have authorized a twitter account." %}</h2>
         <input name="pub2twitter" type="checkbox" id="pub2twitter" value="yes" />
         <label for="pub2twitter">{% trans "Publish to Twitter?" %}</label>
-        {% endif %}
-        
-        {% if pownce_authorized %}
-        <h2>{% trans "You have authorized a pownce account." %}</h2>
-        <input name="pub2pownce" type="checkbox" id="pub2pownce" value="yes" />
-        <label for="pub2pownce">{% trans "Publish to Pownce?" %}</label>
         {% endif %}
         
         <p>
