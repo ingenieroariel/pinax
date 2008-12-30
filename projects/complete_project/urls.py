@@ -53,6 +53,7 @@ urlpatterns = patterns('',
     (r'^swaps/', include('swaps.urls')),
     (r'^flag/', include('flag.urls')),
     (r'^schedule/', include('schedule.urls')),
+    (r'^locations/', include('locations.urls')),
     
     (r'^feeds/tweets/(.*)/$', 'django.contrib.syndication.views.feed', tweets_feed_dict),
     (r'^feeds/posts/(.*)/$', 'django.contrib.syndication.views.feed', blogs_feed_dict),
@@ -79,7 +80,7 @@ from microblogging.models import Tweet
 
 friends_tweets_kwargs = {
     "template_name": "microblogging/friends_tweets.html",
-    "friends_objects_function": lambda users: Tweet.objects.filter(sender__in=users),
+    "friends_objects_function": lambda users: Tweet.objects.filter(sender_id__in=[user.id for user in users], sender_type__name='user'),
 }
 
 from bookmarks.models import Bookmark

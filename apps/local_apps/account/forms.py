@@ -36,7 +36,7 @@ class LoginForm(forms.Form):
             if user.is_active:
                 self.user = user
             else:
-                raise forms.ValdidationError(_("This account is currently inactive."))
+                raise forms.ValidationError(_("This account is currently inactive."))
         else:
             raise forms.ValidationError(_("The username and/or password you specified are not correct."))
         return self.cleaned_data
@@ -282,22 +282,5 @@ class TwitterForm(UserForm):
         update_other_services(self.user,
             twitter_user = self.cleaned_data['username'],
             twitter_password = get_twitter_password(settings.SECRET_KEY, self.cleaned_data['password']),
-        )
-        self.user.message_set.create(message=ugettext(u"Successfully authenticated."))
-
-class PownceForm(UserForm):
-    usernamep = forms.CharField(label=_("Username"), required=True)
-    passwordp = forms.CharField(label=_("Password"), required=True,
-                               widget=forms.PasswordInput(render_value=False))
-                               
-    def __init__(self, *args, **kwargs):
-        super(PownceForm, self).__init__(*args, **kwargs)
-        self.initial.update({"usernamep": other_service(self.user, "pownce_user")})
-        
-    def save(self):
-        from microblogging.pownce_utils import get_pownce_password
-        update_other_services(self.user,
-            pownce_user = self.cleaned_data['usernamep'],
-            pownce_password = get_pownce_password(settings.SECRET_KEY, self.cleaned_data['passwordp']),
         )
         self.user.message_set.create(message=ugettext(u"Successfully authenticated."))
