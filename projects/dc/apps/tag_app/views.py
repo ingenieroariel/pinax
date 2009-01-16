@@ -37,12 +37,12 @@ def tags(request, tag, template_name='tags/index.html'):
     # added per #51  keyword association with profiles
     profile_tags = TaggedItem.objects.get_by_model(Profile, tag)
     
+    
     return render_to_response(template_name, {
         'tag': tag,
         'alltags': alltags,
         'phototags': phototags,
         'bookmarktags': bookmarktags,
-        'profile_tags': profile_tags, 
         'project_tags': project_tags,
         'project_topic_tags': project_topic_tags,
         'project_task_tags': project_task_tags,
