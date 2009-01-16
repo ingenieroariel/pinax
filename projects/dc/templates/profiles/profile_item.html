@@ -1,0 +1,18 @@
+{% load switchcase %}
+{% load restructuredtext %}
+{% load wiki %}
+{% load markup %}
+{% load gravatar %}
+{% load extra_tagging_tags %}
+
+<div class="profile clearfix">
+    <div class="{% cycle odd,even %}">
+
+        
+        <span class="meta">
+            <div class="avatar">{% gravatar profile.user 40 %}</div>
+            <div class="details"><a href="{{ profile.get_absolute_url }}">{{ profile }}</a></div>
+        </span>        
+
+    </div>
+</div>

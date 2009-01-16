@@ -1,0 +1,42 @@
+{% extends "blog/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% blocktrans %}Write a Blog Post{% endblocktrans %}{% endblock %}
+
+{% block body %}
+
+    <div id="basic-form">
+        <fieldset>
+            <legend>{% trans "Write a Blog Post" %}</legend>
+
+            <form method="POST" action="" id="blog_form">
+                    <div class = "form_block">{{ blog_form.non_field_errors }}</div>
+                    {% for field in blog_form %}
+                        {% if field.errors %}<div class = "form_block">{{ field.errors }}</div>{% endif %}
+                        {% ifequal field.name "tease" %}<div class = "teaser">{% else %}{% endifequal %}
+                            <div class = "form_block">{{ field.label_tag }}
+                                    {% ifequal field.name "body" %}
+                                    <a href="#" onclick="$('#teaser').toggle(); return false;">{% trans "Teaser" %}</a>
+                                    {% endifequal %}
+                            </div>
+                            <div class = "form_block">{{ field }}</div>
+                        {% if field.help_text %}<div class = "form_block">{{ field.help_text }}</div>{% endif %}
+                    {% endfor %}
+                    <div class = "form_block"><input type="hidden" name="action" value="create" /><input type="submit" value="create" class="button"/></div>
+            </form>
+            </legend>
+        </fieldset>
+    </div>
+
+{% endblock %}
+
+{% block extra_body %}
+    {% load jquery_validation %}
+    {% include_validation %}
+    <script type="text/javascript">
+        $(function(){
+            $('#blog_form').validate('{% url blog_form_validate %}', {type: 'table'});
+        });
+    </script>
+{% endblock %}

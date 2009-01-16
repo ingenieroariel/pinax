@@ -1,0 +1,38 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load uni_form %}
+
+{% block head_title %}{% trans "Other Services" %}{% endblock %}
+
+{% block body %}
+
+<h1>{% trans "Other Services" %}</h1>
+<h3><a href="#" onclick="$('#TwitterForm').toggle();">{% trans "Twitter" %}</a></h3>
+<form  action="" method="POST" name="TwitterForm" class="uniForm" id="TwitterForm">
+  {% if twitter_authorized %}
+  <p style="background:#C8E8FB">
+    {% trans "You have already authorized a twitter account." %}
+    {% trans "Change your account with this form." %}
+  
+{% endif %}
+
+
+
+    <fieldset class="inlineLabels">          
+      {{ twitter_form|as_uni_form }}
+      <div class="form_block">
+          <input id="actionType" type="hidden" name="actionType" value="saveTwitter" />
+         <input type="submit" value="{% trans "save" %}"/>      
+      </div>
+    </fieldset>
+</form>
+    <p>{% endblock %}
+      
+      {% block extra_body %}
+      {% load jquery_validation %}
+      {% include_validation %}
+  <script type="text/javascript">
+       <!-- nothing here -->
+      </script>
+      {% endblock %}</p>

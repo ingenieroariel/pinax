@@ -1,0 +1,13 @@
+{% load i18n %}
+{% load wikiurl %}
+
+{% if search_form %}
+    <div id="searchbox">
+        <form method="post" action="{% wikiurl search group %}">
+                {{ search_form }}
+                <div class = "form_block">
+                    <input type="submit" name="search_button" value="{% trans "Go" %}" />
+                </div>
+        </form>
+    </div>
+{% endif %}

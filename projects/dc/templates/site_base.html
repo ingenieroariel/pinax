@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load openid_tags %}
+{% load svn_app_version %}
+{% block login %}
+    {% if user.is_authenticated %}
+        {% openid_icon openid user %}<b>{{ user }}</b> | <a href="{% url acct_email %}">{% trans "Account" %}</a> | {% if user.is_staff %}<a href="/admin/">{% trans "Admin" %}</a> | {% endif %}<a href="{% url openid_logout %}?next={% url acct_logout %}">{% trans "Logout" %}</a>
+    {% else %}
+        <a href="{% url acct_login %}">{% trans "Login" %}</a> {% trans "or" %} <a href="{% url acct_signup %}"><b>{% trans "Sign up" %}</b></a>
+    {% endif %}
+{% endblock %}
+
+{% block locale_switcher %}
+    <form action="{% if request.user.is_authenticated %}{% url acct_language_change %}{% else %}/i18n/setlang/{% endif %}" method="post" id="locale_switcher">
+        <select name="language" onchange="$('#locale_switcher').submit()">
+            {% for lang in LANGUAGES %}
+                <option value="{{ lang.0 }}"{% ifequal lang.0 LANGUAGE_CODE %} selected="selected"{% endifequal %}>{{ lang.1 }}</option>
+            {% endfor %}
+        </select>
+    </form>
+{% endblock %}
+
+{% block logo_link_image %}<a href="{% url home %}"><img src="/site_media/smdx_logo.png" alt="ScienceWorks The SMD Information Exchange"/></a>{% endblock %}
+
+{% block tabs %}
+{% comment %}
+    <div>
+        <div>
+            <span class="tab tab_home"><div><a href="{% url home %}">{% trans "Home" %}</a></div></span>
+        </div>
+    </div>
+{% endcomment %}
+{% endblock %}
+
+{% block right_tab %}
+    {% if user.is_authenticated %}
+        <div>
+            <ul>
+                <li class="tab rtab_profile"><div><a href="{% url profiles.views.profile user %}">{% trans "Profile" %}</a></div></li>
+                <li class="tab rtab_photos"><div><a href="{% url photos.views.photos %}">{% trans "Photos" %}</a></div></li>
+                <li class="tab rtab_blogs"><div><a href="{% url blog.views.blogs %}">{% trans "Blogs" %}</a></div></li>
+                <li class="tab rtab_projects"><div><a href="{% url project_thing_list "" %}">{% trans "Projects" %}</a></div></li>
+                <li class="tab rtab_tribes"><div><a href="{% url tribe_thing_list "" %}">{% trans "Groups" %}</a></div></li>
+                <li class="tab rtab_tweets"><div><a href="{% url tweets_you_follow %}">{% trans "Statuses" %}</a></div></li>
+                <li class="tab rtab_bookmarks"><div><a href="{% url bookmarks.views.bookmarks %}">{% trans "Bookmarks" %}</a></div></li>
+                <li class="tab rtab_inbox"><div><a href="{% url messages_inbox %}">{% trans "Inbox" %} ({{ combined_inbox_count }})</a></div></li>
+            </ul>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block footer %}
+	
+			<div id="footerBG">
+				<div id="mainlinks-footer">	
+					<ul>
+						<li><a href="http://www.hq.nasa.gov/office/pao/FOIA/agency/">Freedom of Information Act</a></li>
+						<li><a href="http://www.nasa.gov/about/budget/index.html">Budgets, Strategic Plans and Accountability Reports</a></li>
+						<li><a href="http://www.nasa.gov/about/highlights/HP_Management.html">The President's Management Agenda</a></li>
+
+						<li><a href="http://www.nasa.gov/about/highlights/HP_Privacy.html">Privacy Policy and Important Notices</a></li>
+						<li><a href="http://www.hq.nasa.gov/office/oig/hq/hotline.html">Inspector General Hotline</a></li>
+					</ul>
+					<ul>
+						<li><a href="http://www.hq.nasa.gov/office/codee/nofear.html">Equal Employment Opportunity Data Posted Pursuant to the No Fear Act</a></li>
+						<li><a href="http://www.nasa.gov/about/contact/information_inventories_schedules.html">Information-Dissemination Priorities and Inventories</a></li>
+
+						<li><a href="http://www.usa.gov/">USA.gov</a></li>
+
+						<li><a href="http://www.whitehouse.gov/omb/expectmore/">ExpectMore.gov</a></li>
+					</ul>
+				</div>
+				<div id="secondlinks-footer">
+					<a href="http://www.nasa.gov" class="nasalogo"><span class="hide">National Aeronautics and Space Administration</span></a><br />
+
+					Responsible NASA Official: <span
+    id="nasa-responsible-official">Ruth Netting</span><br /> 
+					<a href="https://river.sef.hq.nasa.gov/contact-info">Send us your comments!</a><br />
+
+					Last Updated: December 09, 2008
+					<ul>
+						<li><a href="https://river.sef.hq.nasa.gov/glossary">Glossary</a></li>
+						<li><a href="https://river.sef.hq.nasa.gov/sitemap">Site Map</a></li>
+
+						<li><a href="http://www.adobe.com/products/acrobat/readstep2.html?promoid=BUIGO">Adobe Reader</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class = "page_bottom">   </div>
+
+{% endblock %}

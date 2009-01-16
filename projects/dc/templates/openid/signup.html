@@ -1,0 +1,27 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load uni_form %}
+
+{% block head_title %}{% trans "Sign Up with OpenID" %}{% endblock %}
+
+{% block body %}
+    <h1>{% trans "Sign Up with OpenID" %}</h1>
+    
+    {% if form.errors %}
+        <p class="error">{% trans "Please correct the errors below:" %}</p>
+    {% endif %}
+    
+    <form class="signup uniForm" method="post" action="">
+        <fieldset class="inlineLabels">
+            {{ form|as_uni_form }}
+            <div class="form_block">
+                <input type="submit" value="{% trans "Sign Up &raquo;" %}" />
+            </div>
+        </fieldset>
+    </form>
+    
+    <p>{% blocktrans %}Already have an account? <a href="/account/login/?next=/openid/associations/">Login here</a> to associate your OpenID with your existing account.{% endblocktrans %}</p>
+    <p>{% blocktrans %}By clicking "Sign Up", you are indicating that you have read and agree to the <a href="/about/terms">Terms of Use</a> and <a href="/about/privacy">Privacy Policy</a>.{% endblocktrans %}</p>
+    <p>{% blocktrans %}If you have any trouble creating your account, contact us at <a href="mailto:{{ contact_email }}">{{ contact_email }}</a>.{% endblocktrans %}</p>
+{% endblock %}

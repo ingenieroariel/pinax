@@ -1,0 +1,25 @@
+{% extends "tribes/base.html" %}
+
+{% load i18n %}
+{% load pagination_tags %}
+{% load tribe_tags %}
+
+{% block head_title %}{% trans "Your Groups" %}{% endblock %}
+
+{% block body %}
+    
+    <h1>{% trans "Your Groups" %}</h1>
+    
+    <p>{% trans "These are the groups you participate in." %}</p>
+        
+    {% autopaginate tribes %}
+    
+    <dl>
+        {% for tribe in tribes %}
+            {% show_tribe tribe %}
+        {% endfor %}
+    </dl>
+    
+    {% paginate %}
+    
+{% endblock %}
