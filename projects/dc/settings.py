@@ -1,11 +1,19 @@
 # -*- coding: utf-8 -*-
-# Django settings for dc-special pinax project.
+# Django settings for complete pinax project.
+
+import os.path
+
+PINAX_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../"))
+PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
 DEBUG = True
-TEMPLATE_DEBUG = False
+TEMPLATE_DEBUG = DEBUG
+
+# tells Pinax to serve media through django.views.static.serve.
+SERVE_MEDIA = DEBUG
 
 ADMINS = (
-    ('dgreenfe', 'daniel.greenfeld-1@nasa.gov'),
+    # ('Your Name', 'your_email@domain.com'),
 )
 
 MANAGERS = ADMINS
@@ -38,8 +46,6 @@ USE_I18N = True
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
 
-import os.path
-
 MEDIA_ROOT = os.path.join(os.path.dirname(__file__), "site_media")
 
 # URL that handles the media served from MEDIA_ROOT.
@@ -65,19 +71,17 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django_openidconsumer.middleware.OpenIDMiddleware',
+    'django_openid.consumer.SessionConsumer',
     'account.middleware.LocaleMiddleware',
     'django.middleware.doc.XViewMiddleware',
     'djangologging.middleware.LoggingMiddleware',
     'pagination.middleware.PaginationMiddleware',
     'misc.middleware.SortOrderMiddleware',
-    'crashlog.CrashLogMiddleware',
+    'djangodblog.middleware.DBLogMiddleware',
     'django.middleware.transaction.TransactionMiddleware',
 )
 
-ROOT_URLCONF = 'dc.urls'
-
-import os.path
+ROOT_URLCONF = 'complete_project.urls'
 
 TEMPLATE_DIRS = (
     os.path.join(os.path.dirname(__file__), "templates"),
@@ -118,6 +122,7 @@ INSTALLED_APPS = (
     
     # external
     'notification', # must be first
+    'django_openid',
     'emailconfirmation',
     'django_extensions',
     'robots',
@@ -126,12 +131,10 @@ INSTALLED_APPS = (
     'mailer',
     'messages',
     'announcements',
-    'django_openidconsumer',
-    'django_openidauth',
     'oembed',
-    'crashlog',
+    'djangodblog',
     'pagination',
-    'gravatar',
+#    'gravatar',
     'threadedcomments',
     'wiki',
     'swaps',
@@ -140,18 +143,20 @@ INSTALLED_APPS = (
     'app_plugins',
     'voting',
     'tagging',
-    'bookmarks', # external now
+    'bookmarks',
     'blog',
     'ajax_validation',
     'photologue',
-#    'avatar',
+    'avatar',
     'things',
     'flag',
+    'schedule',
+    'microblogging',
+    'locations',
     
     # internal (for now)
     'analytics',
     'profiles',
-    'zwitschern',
     'account',
     'tribes',
     'projects',
@@ -159,7 +164,8 @@ INSTALLED_APPS = (
     'photos',
     'tag_app',
     'uni_form',
-    'proto_search',
+    'proto_search',    
+    
     'django.contrib.admin',
 
 )
@@ -173,8 +179,8 @@ NOTIFICATION_LANGUAGE_MODULE = 'account.Account'
 
 EMAIL_CONFIRMATION_DAYS = 2
 EMAIL_DEBUG = DEBUG
-CONTACT_EMAIL = "pydanny@gmail.com"
-SITE_NAME = "dc-special"
+CONTACT_EMAIL = "feedback@example.com"
+SITE_NAME = "Pinax"
 LOGIN_URL = "/account/login"
 LOGIN_REDIRECT_URLNAME = "what_next"
 
@@ -224,6 +230,10 @@ BEHIND_PROXY = False
 FORCE_LOWERCASE_TAGS = True
 
 WIKI_REQUIRES_LOGIN = True
+
+# Uncomment this line after signing up for a Yahoo Maps API key at the
+# following URL: https://developer.yahoo.com/wsregapp/
+# YAHOO_MAPS_API_KEY = ''
 
 # local_settings.py can be used to override environment-specific settings
 # like database and email that differ between development and production.
