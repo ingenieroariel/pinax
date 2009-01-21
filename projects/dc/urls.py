@@ -5,12 +5,6 @@ from django.contrib import admin
 
 import os.path
 
-from zwitschern.feeds import TweetFeedAll, TweetFeedUser, TweetFeedUserWithFriends
-tweets_feed_dict = {"feed_dict": {
-    'all': TweetFeedAll,
-    'only': TweetFeedUser,
-    'with_friends': TweetFeedUserWithFriends,
-}}
 
 from blog.feeds import BlogFeedAll, BlogFeedUser
 blogs_feed_dict = {"feed_dict": {
@@ -38,7 +32,7 @@ urlpatterns = patterns('',
     (r'^notices/', include('notification.urls')),
     (r'^messages/', include('messages.urls')),
     (r'^announcements/', include('announcements.urls')),
-    (r'^tweets/', include('zwitschern.urls')),
+    (r'^tweets/', include('microblogging.urls')),
     (r'^tribes/', include('tribes.urls')),
     (r'^projects/', include('projects.urls')),
     (r'^comments/', include('threadedcomments.urls')),
@@ -51,7 +45,6 @@ urlpatterns = patterns('',
     (r'^swaps/', include('swaps.urls')),
     (r'^flag/', include('flag.urls')),
     
-    (r'^feeds/tweets/(.*)/$', 'django.contrib.syndication.views.feed', tweets_feed_dict),
     (r'^feeds/posts/(.*)/$', 'django.contrib.syndication.views.feed', blogs_feed_dict),
     (r'^feeds/bookmarks/(.*)/?$', 'django.contrib.syndication.views.feed', bookmarks_feed_dict),
     (r'^search/', include('proto_search.urls')),    
@@ -73,10 +66,10 @@ friends_blogs_kwargs = {
     "friends_objects_function": lambda users: Post.objects.filter(author__in=users),
 }
 
-from zwitschern.models import Tweet
+
 
 friends_tweets_kwargs = {
-    "template_name": "zwitschern/friends_tweets.html",
+    "template_name": "microblogging/friends_tweets.html",
     "friends_objects_function": lambda users: Tweet.objects.filter(sender__in=users),
 }
 
