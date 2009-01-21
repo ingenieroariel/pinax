@@ -2,7 +2,7 @@
 {% load restructuredtext %}
 {% load wiki %}
 {% load markup %}
-{% load gravatar %}
+{% load avatar %}
 {% load extra_tagging_tags %}
 
 <div class="profile clearfix">
@@ -10,7 +10,7 @@
 
         
         <span class="meta">
-            <div class="avatar">{% gravatar profile.user 40 %}</div>
+            <div class="avatar">{% avatar profile.user 40 %}</div>
             <div class="details"><a href="{{ profile.get_absolute_url }}">{{ profile }}</a></div>
         </span>        
 
