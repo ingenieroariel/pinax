@@ -69,7 +69,7 @@ def search_form(request):
         ) 
         results += set_obj_info(Profile.objects.filter(qset).distinct(),'Profile')        
         
-    return render_to_response('search_form.html',
+    return render_to_response('search.html',
             {"query": query,
             "results":results,
             "dump":qset}

@@ -1,35 +1,9 @@
-{% extends "base.html" %}
-
-{% load search_extra %}
-
-{% block search %}
-
-
-<form action="." method="GET"> 
+<form action="search" method="GET"> 
     <label for="q">Search: </label> 
     <input type="text" name="q" value="{{ query|escape }}"> 
     <input type="submit" value="Search"> 
 </form> 
 
 
-{% if query %} 
-    <h2>Results for "{{ query|escape }}":</h2> 
-    {% if results %} 
-        <ul> 
-            {% for item in results %} 
-            <li>
-                <a href="{{ item.get_absolute_url }}">{{ item.obj_title }}</a>
-                <p>{{ item.obj_description }}</p>
-             
-                                                
-            </l1> 
-            {% endfor %} 
-        </ul> 
-    {% else %} 
-        <p>Nothing</p> 
-    {% endif %} 
-{% endif %}
 
 
-
-{% endblock %}
