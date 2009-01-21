@@ -9,7 +9,7 @@ from django.utils.translation import ugettext
 from friends.forms import InviteFriendForm
 from friends.models import FriendshipInvitation, Friendship
 
-from zwitschern.models import Following
+from microblogging.models import Following
 
 from profiles.models import Profile
 from profiles.forms import ProfileForm
@@ -44,7 +44,7 @@ def profile(request, username, template_name="profiles/profile.html"):
     
     if request.user.is_authenticated() and request.method == "POST" and not is_me:
         
-        # @@@ some of this should go in zwitschern itself
+        # @@@ some of this should go in microblogging itself
         
         if request.POST["action"] == "follow":
             Following.objects.follow(request.user, other_user)
