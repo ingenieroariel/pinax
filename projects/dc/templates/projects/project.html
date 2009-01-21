@@ -1,8 +1,8 @@
 {% extends "projects/base.html" %}
 
-{% load zwitschern %}
+{% load microblogging %}
 {% load i18n %}
-{% load gravatar %}
+{% load avatar_tags %}
 {% load wiki %}
 {% load wikiurl %}
 {% load threadedcommentstags %}
@@ -24,7 +24,7 @@
                     {% for member in project.members.all %}
                         {% if forloop.counter0|divisibleby:"3" %}<tr>{% endif %}
                         <span class="{% if member.away %}away{% else %}active{% endif %}-member">
-                            <div class="avatar">{% gravatar member.user 40 %}</div>
+                            <div class="avatar">{% avatar member.user 40 %}</div>
                             <div class="details"><a href="{% url profiles.views.profile member.user.username %}" title="{{ member.user.username }}">{{ member.user.username }}</a></div>
                         </span>
                         {% if forloop.counter0|add:"1"|divisibleby:"3" %}</div>{% endif %}
