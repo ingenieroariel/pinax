@@ -3,8 +3,16 @@ from django.conf import settings
 from django.views.generic.simple import direct_to_template
 from django.contrib import admin
 
+from account.openid_consumer import PinaxConsumer
+
 import os.path
 
+from microblogging.feeds import TweetFeedAll, TweetFeedUser, TweetFeedUserWithFriends
+tweets_feed_dict = {"feed_dict": {
+    'all': TweetFeedAll,
+    'only': TweetFeedUser,
+    'with_friends': TweetFeedUserWithFriends,
+}}
 
 from blog.feeds import BlogFeedAll, BlogFeedUser
 blogs_feed_dict = {"feed_dict": {
@@ -22,7 +30,7 @@ urlpatterns = patterns('',
     
     (r'^about/', include('about.urls')),
     (r'^account/', include('account.urls')),
-    (r'^openid/', include('account.openid_urls')),
+    (r'^openid/(.*)', PinaxConsumer()),
     (r'^bbauth/', include('bbauth.urls')),
     (r'^authsub/', include('authsub.urls')),
     (r'^profiles/', include('profiles.urls')),
@@ -41,13 +49,16 @@ urlpatterns = patterns('',
     (r'^bookmarks/', include('bookmarks.urls')),
     (r'^admin/(.*)', admin.site.root),
     (r'^photos/', include('photos.urls')),
-    #(r'^avatar/', include('avatar.urls')),
+    (r'^avatar/', include('avatar.urls')),
     (r'^swaps/', include('swaps.urls')),
     (r'^flag/', include('flag.urls')),
+    (r'^schedule/', include('schedule.urls')),
+    (r'^locations/', include('locations.urls')),
+    (r'^search/', include('proto_search.urls')),    
     
+    (r'^feeds/tweets/(.*)/$', 'django.contrib.syndication.views.feed', tweets_feed_dict),
     (r'^feeds/posts/(.*)/$', 'django.contrib.syndication.views.feed', blogs_feed_dict),
     (r'^feeds/bookmarks/(.*)/?$', 'django.contrib.syndication.views.feed', bookmarks_feed_dict),
-    (r'^search/', include('proto_search.urls')),    
 )
 
 ## @@@ for now, we'll use friends_app to glue this stuff together
@@ -66,11 +77,11 @@ friends_blogs_kwargs = {
     "friends_objects_function": lambda users: Post.objects.filter(author__in=users),
 }
 
-
+from microblogging.models import Tweet
 
 friends_tweets_kwargs = {
     "template_name": "microblogging/friends_tweets.html",
-    "friends_objects_function": lambda users: Tweet.objects.filter(sender__in=users),
+    "friends_objects_function": lambda users: Tweet.objects.filter(sender_id__in=[user.id for user in users], sender_type__name='user'),
 }
 
 from bookmarks.models import Bookmark
@@ -90,7 +101,7 @@ urlpatterns += patterns('',
     url('^bookmarks/friends_bookmarks/$', 'friends_app.views.friends_objects', kwargs=friends_bookmarks_kwargs, name="friends_bookmarks"),
 )
 
-if settings.DEBUG:
+if settings.SERVE_MEDIA:
     urlpatterns += patterns('',
         (r'^site_media/(?P<path>.*)$', 'django.views.static.serve',
             {'document_root': os.path.join(os.path.dirname(__file__), "site_media")}),
