@@ -1,3 +1,10 @@
+/*
+
+				BASE CSS TAGS
+
+/******************************************************/
+
+
 body {
     background-color: #FFF;
     margin: 0;
@@ -30,25 +37,46 @@ td {
     border: 0;
     padding: 0;
 }
+
+#main {
+	width: 100%;
+	background: #FFF url(/site_media/top_shadow.gif) repeat-x  ;
+}
+
 #body {
     clear: both;
-    margin: 0 auto;
-    padding: 10px;
-    width: 800px;
+    /*margin: 0 auto;*/
+	margin-left: auto;
+	margin-right: auto;
+    padding: 10px 10px 10px 15px;
+    width: 905px;
+    border-right: 1px solid #cecece;
+    border-top: none;
+	background: transparent url(/site_media/left_border.gif) repeat-y;
 }
-#footer {
-    color: #999; /* footer text colour */
-    margin: 50px auto;
-    padding: 10px;
-    clear: both;
-    width: 800px;
+
+#bodyBottom {
+	width: 931px;
+	background: #FFF url(/site_media/bottom_shadow.gif) no-repeat;
+	padding: 4px 0 4px 0;
+	margin-left: auto;
+	margin-right: auto;
+	clear: left;
 }
-#footer a, #footer a:visited {
-    color: #444; /* footer link colour */
+
+#body #logo {
+    background: #fff url(/site_media/spacebook_logo.png) no-repeat 0 0;
+    width: 260px;
+    height: 6em;
+   /* z-index: -999;*/
+    display: block;
+    /*margin-top: -5em;*/
 }
-#footer a:hover {
-    color: #777; /* footer link hover colour */
+
+#body #logo h1 {
+    display: none;
 }
+
 #site_wide_announcements {
     background: yellow;
     padding: 10px;
@@ -59,34 +87,148 @@ td {
     margin: 0;
 }
 h1 {
+    color: #FF6600;
     margin: 0;
+    font-size: 1.8em;
 }
+
+h2 {
+    color: #FF6600;
+    font-size: 1.5em;
+}
+
+
+
+/*
+						FOOTER
+
+*********************************************************/  
+
+
+#footer {
+	background: #ffffff;
+    display: block;
+	font-size: 0.9em;
+	/*float: left;*/
+	line-height: 1.2em;
+	margin: 0;
+	padding: 15px 15px 0 15px;
+    /*margin-top: 2em;*/
+	margin-left: auto;
+	margin-right: auto;
+	width: 901px;
+}
+
+#mainlinks-footer {
+	/*position: static;*/
+	background: none;
+	color: #FFF;
+	line-height: 1em;
+	/*float:left;*/
+	margin: 0 0 10px 15px;
+}
+
+#footer #mainlinks-footer ul {
+	margin: 0 ;
+	padding: 0 0 0 20px;
+	width: 225px;
+	float: left;
+	list-style-type: square;
+}
+
+#footer #mainlinks-footer ul li {
+	color: #cecece;
+	margin: 0px 0px 3px;
+	padding: 0;
+}
+
+#footer #mainlinks-footer ul li a {
+	color: #333;
+	font-size: 0.95em;
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+}
+
+#footer #mainlinks-footer ul li a:hover {
+	text-decoration: underline;
+}
+
+#footer #secondlinks-footer {
+	font-size: 0.95em;
+	color: #333;
+	float: left;
+	margin: 0 0 10px 15px;
+	padding: 0 0px 0 3em;
+}
+
+.page_bottom {
+	/*float: right;
+    padding: 0 15px 15px;*/
+	clear: both;
+}
+
+
+
+
+
+
+/*
+						HEADER
+
+*********************************************************/  
+
 #tabhead {
-    position: relative;
-    background: #035 url('heading.png') left top repeat-x;
-    border-bottom: 1px solid #000; /* tab border */
+    /*position: relative;*/
+    background: #096ca8;
+    /*height: 65px;*/
+	padding: 0 15px 0 30px;
+	width: 100%;
+	
 }
 #tabhead .logo {
-    height: 80px;
+    /*height: 80px;
     padding-left: 5px;
-    padding-top: 0;
+    padding-top: 0;*/
+	width: 210px;
+	
+	
 }
 #tabhead .logo img {
-    width: 190px;
-    height: 79px;
+    width: 210px;
+    height: 58px;
 }
+
 #tabhead .login {
     position: absolute;
-    top: 6px;
-    right: 15px;
+    top: 0;
+    right: 30px;
     color: #DEF; /* login bar text colour */
+	margin: 0;
+	padding: 20px 0 6px 0;
+	font-size: 0.9em;
+	/*width: 660px;*/
 }
 #tabhead .login a, #tabhead .login a:visited {
     color: #DEF; /* login bar link colour */
+	margin: 0 10px 0 10px;
 }
 #tabhead .login a:hover {
     color: #FFF; /* login bar link hover colour */
 }
+
+#tabhead b {
+	padding: 0 10px 0 10px;
+}
+
+
+
+/*
+						RIGHT NAV
+
+*********************************************************/  
+
+
 #tabhead .tabs {
     position: absolute;
     bottom: -1px; /* must be same thickness as tab border */
@@ -98,32 +240,77 @@ h1 {
     padding-bottom: 1px; /* must be same thickness as tab border */
 }
 #tabhead .tab a, #tabhead .tab a:visited {
-    color: #444; /* unselected tab text colour */
-    font-weight: bold;
-    text-decoration: none;
 }
 #tabhead .tab a:hover {
     color: #666; /* unselected tab text hover colour */
 }
 #tabhead .tab div {
-    background-color: #DDD; /* unselected tab colour */
-    padding: 0;
-    padding-bottom: 4px;
-    padding-top: 5px;
-    margin: 0 1px; /* to compensate for border */
 }
 #tabhead .tab div a {
     padding: 5px 12px;
 }
-#tabhead .right_tab {
-    position: absolute;
-    right: 15px;
-    bottom: -1px; /* must be same thickness as tab border */
+
+
+#body .right_tab {
+	float:right;
+	/*margin:0 auto;*/
+	width: 660px;
+	padding: 35px 0 0;
 }
-#tabhead .right_tab td {
-    vertical-align: bottom;
-    padding-right: 0; /* space between tabs */
-    padding-bottom: 1px; /* must be same thickness as tab border */
+#body .right_tab ul {
+	border-bottom:1px solid grey;
+	display:block;
+	float:right;
+	list-style-type:none;
+	margin:0;
+	padding:0 0 0.3em;
+	position:static;
+}
+
+#body .right_tab li {
+	background: none repeat scroll;
+	display:block;
+	float:left;
+	margin:0;
+	padding:0;
+	position:relative;
+	text-align:center;
+	width: 77px;
+}
+
+#home_tab .tab_home a,
+#apps_tab .tab_apps a,
+#sites_tab .tab_sites a,
+#team_tab .tab_team a,
+#profile_tab .rtab_profile a,
+#blogs_tab .rtab_blogs a,
+#swaps_tab .rtab_swaps a,
+#photos_tab .rtab_photos a,
+#projects_tab .rtab_projects a,
+#tribes_tab .rtab_tribes a,
+#tweets_tab .rtab_tweets a,
+#bookmarks_tab .rtab_bookmarks a,
+#wiki_tab .rtab_wiki a,
+#inbox_tab .rtab_inbox a
+{
+background:transparent url(/site_media/nav_active.jpg) no-repeat scroll 0 0;
+}
+
+#body .right_tab ul li a {
+	background: #cecece url('/site_media/nav_bg.png') no-repeat scroll 0 0;
+	color:#000000;
+	display:block;
+	font-size:.8em;
+	margin:0 auto;
+	position:relative;
+	text-decoration:none;
+        height: 19px;
+        padding-top: 4px;
+}
+
+#body .right_tab ul li a:hover {
+	background: #007fb7 url(/site_media/nav_bg.png) no-repeat scroll 0 0;
+	color: #FFF;
 }
 
 /* selected tabs */
@@ -140,11 +327,8 @@ h1 {
 #tweets_tab .rtab_tweets,
 #bookmarks_tab .rtab_bookmarks,
 #wiki_tab .rtab_wiki,
-#inbox_tab .rtab_inbox,
-#locations_tab .rtab_locations
+#inbox_tab .rtab_inbox
 {
-    bottom: -1px !important;
-    padding-bottom: 0 !important;
 }
 #home_tab .tab_home a,
 #apps_tab .tab_apps a,
@@ -159,34 +343,62 @@ h1 {
 #tweets_tab .rtab_tweets a,
 #bookmarks_tab .rtab_bookmarks a,
 #wiki_tab .rtab_wiki a,
-#inbox_tab .rtab_inbox a,
-#locations_tab .rtab_locations a
+#inbox_tab .rtab_inbox a
 {
-    color: #000 !important; /* selected tab text colour */
+	background: #007fb7 url(/site_media/nav_bg.png) no-repeat scroll 0 0 !important;
+	
 }
-#home_tab .tab_home div,
-#apps_tab .tab_apps div,
-#sites_tab .tab_sites div,
-#team_tab .tab_team div,
-#profile_tab .rtab_profile div,
-#blogs_tab .rtab_blogs div,
-#swaps_tab .rtab_swaps div,
-#photos_tab .rtab_photos div,
-#projects_tab .rtab_projects div,
-#tribes_tab .rtab_tribes div,
-#tweets_tab .rtab_tweets div,
-#bookmarks_tab .rtab_bookmarks div,
-#wiki_tab .rtab_wiki div,
-#inbox_tab .rtab_inbox div,
-#locations_tab .rtab_locations div
-{
+
+
+
+#body .right_tab #subnav {
+    width: 660px;
+    margin: 0 auto;
+    padding-bottom: 1em;
+}
+
+#body .right_tab #subnav ul {
+    display: block;
+    float: right;
+    padding: 0;
     margin: 0;
-    background-color: #DEF !important; /* selected tab colour */
-    border-left: 1px solid #000 !important; /* tab border */
-    border-top: 1px solid #000 !important; /* tab border */
-    border-right: 1px solid #000 !important; /* tab border */
-    padding-bottom: 5px; /* 1px more than unselected padding-bottom */
+	background: none;
+	border: none;
 }
+
+#body .right_tab #subnav ul li {
+	width: auto;
+	background: none;
+    display: inline;
+    list-style-type: none;
+}
+
+#body .right_tab #subnav ul a:link, #body .right_tab #subnav ul a:visited {
+    float: left;
+    font-weight: bold;
+    text-decoration: none;
+    color: #444;
+    padding: 4px 10px;
+    font-size: 0.8em;
+	background: none;
+	width: auto;
+	height: auto;
+}
+
+#body .right_tab #subnav ul a:hover {
+    color: #FFF;
+    background: #9BC;
+}
+
+
+/* END RIGHT NAV ****************************/
+
+
+
+
+
+
+
 
 form th {
     text-align : left;
@@ -202,7 +414,7 @@ input[type="text"], input[type="password"], textarea {
     border-bottom: solid 1px #E3E3E3;
     color: #666;
     font-size: 12pt;
-    background: #F3F3F3 url('form-shadow.png') left top repeat-x;
+    background: #F3F3F3 url('/site_media/form-shadow.png') left top repeat-x;
 }
 /*
 input[type="submit"] {
@@ -212,7 +424,15 @@ input[type="submit"] {
     color: #FF0000;
     text-decoration: underline;
 }
+
+
 */
+
+.form_block {
+    clear: both;
+    display: block;
+}
+
 .clearboth {
     clear: both;
 }
@@ -329,13 +549,6 @@ span.notice_type_description {
 div.profile_info p {
     margin: 0;
 }
-#avatar_replace {
-    position: absolute;
-    margin-top: -23px;
-    background-color: #FFFFFF;
-    padding: 3px;
-    display: none;
-}
 ul.avatar_choices,ul.avatar_choices ul {
     margin-left: 0px;
     padding-left: 0px;
@@ -369,35 +582,31 @@ table.messages tr th {
     border-bottom: 1px solid #999;
 }
 
-#subnav {
-    margin: 0;
-    padding: 0;
-    background: #DEF; /* tab colour */
-    border-bottom: 1px solid #9BC;
-}
 
-#subnav ul {
-    float: right;
-    margin: 0 20px;
-    padding: 0;
-}
 
-#subnav ul li {
-    display: inline;
-    list-style-type: none;
-}
-
-#subnav ul a:link, #subnav ul a:visited {
+.friends,
+.profile_info,
+.photo_block,
+.tribes {
+    width: 270px;
+    border-bottom: 1px solid #cecece;
     float: left;
-    font-weight: bold;
-    text-decoration: none;
-    color: #444;
-    padding: 4px 20px;
+    display: block;
+    position: relative;
+    clear: both;
+    padding-bottom: 1em;
+	
 }
 
-#subnav ul a:hover {
-    color: #FFF;
-    background: #9BC;
+.wiki_block,
+.blog_block,
+.status_block,
+.bookmarks_block {
+    width: 580px;
+    border: 1px solid #eeeeee;
+    margin-left: 280px;
+    padding: 1em;
+    margin-bottom: 1em;
 }
 
 dl.message-headers {
@@ -425,15 +634,7 @@ div.right_panel {
     float: right;
     z-index: 999;
 }
-
-div.left_panel {
-    width: 550px;
-}
-
 div.friends {
-    background: #DEF;
-    padding: 8px;
-    margin-bottom: 20px;
 }
 div.friends h2 {
     margin: 0 0 5px 0;
@@ -448,11 +649,6 @@ div.friends .details {
     overflow: hidden;
     width: 60px;
     margin: 0 0 12px 0;
-}
-div.tribes {
-    background: #DEF;
-    padding: 8px;
-    margin-bottom: 20px;
 }
 div.tribes h2 {
     margin: 0 0 5px 0;
@@ -562,7 +758,9 @@ div.tweet .reply {
     color: white;
 }
 
-/* topics */
+/* 
+			TOPICS 
+*******************************************/
 table.topic, table.topics {
     width: 100%;
 }
@@ -623,7 +821,9 @@ table.topics .comment_stats {
 }
 
 
-/* pagination */
+/* 
+`					PAGEINATION
+*******************************************/
 .pagination {
     margin: 10px 0;
 }
@@ -650,7 +850,7 @@ table.topics .comment_stats {
  *   http://www.positioniseverything.net/easyclearing.html
  *   http://www.zeldman.com/2006/10/27/ie7fixes1/
  *      comment by michael on 10/28/2006
- */
+ **********************************************/
 .clearfix {
     min-height: 1%;
 }
@@ -675,7 +875,9 @@ table.topics .comment_stats {
     width: 500px;
 }
 
-/* bookmarks */
+/* 
+				BOOKMARKS
+********************************************/
 table.narrow {
     width: 500px;
 }
@@ -719,7 +921,13 @@ dl.what_next dd {
 p.what_next {
     font-size: 120%;
 }
-/* blogs */
+
+
+/* 
+			BLOGS
+			
+*********************************************/
+
 .blog-post h2 {
     margin: 10px 0 0 0;
     font-style: italic;
@@ -752,7 +960,11 @@ p.what_next {
     border: 0;
 }
 
-/* projects */
+
+/* 
+				PROJECTS
+***********************************************/
+
 .project_stats {
     color: #999;
     border-top: 1px solid #CCC;
@@ -760,7 +972,9 @@ p.what_next {
 }
 
 
-/* tasks */
+/* 
+				TASKS
+**********************************************/
 
 .tasks .even {
     background-color: #FAFAFA;
@@ -805,7 +1019,11 @@ h2.task_resolved, h2.task_closed {
     text-decoration: line-through;
 }
 
-/* PHOTOS **************************************/
+
+/* 
+				PHOTOS 
+***********************************************/
+
 .thumb-row {
     margin: 20px 0;
     padding: 20px 0;
@@ -880,7 +1098,11 @@ div.embed {
     margin: 0;
     padding: 0;
 }
-/* FORMS **********************************/
+
+
+/* 
+					FORMS 
+***********************************************/
 
 /* ----------- basic-sm ----------- */
 
@@ -942,7 +1164,11 @@ div.embed {
     background: #F99;
 }
 
-/* Fieldsets */
+
+/* 
+				FIELDSETS
+**********************************************/
+
 fieldset { padding: 20px; margin: 0 0 1.5em 0; border: 2px solid #ddd; }
 legend { padding: 0 .4em; font-weight: bold; font-size: 1.2em; }
 
@@ -965,37 +1191,4 @@ legend { padding: 0 .4em; font-weight: bold; font-size: 1.2em; }
 
 .signupform {
     float: left;
-}
-
-/* form toggle */
-
-.form-toggle p {
-    margin-bottom: 2px;
-}
-
-.form-toggle p span {
-    background: #DEF;
-    padding: 3px 6px;
-    border-top: 1px solid #9BC;
-    border-left: 1px solid #9BC;
-    border-right: 1px solid #9BC;
-    cursor: pointer;
-}
-
-.form-toggle form {
-    padding: 3px 6px;
-    margin: 0;
-    background: #DEF;
-    border: 1px solid #9BC;
-}
-
-.form-toggle input[type="submit"] {
-}
-
-/* locations */
-div#ymap {
-    width: 350px;
-    height: 200px;
-    float: right;
-    border: 1px solid gray; 
 }
