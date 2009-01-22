@@ -1,14 +1,14 @@
 {% extends "profiles/base.html" %}
 {% load uni_form %}
 {% load i18n %}
-{% load gravatar %}
+{% load avatar_tags %}
 {% load app_plugins %}
 
 {% block head_title %}{% blocktrans %}Profile for {{ other_user }}{% endblocktrans %}{% endblock %}
 
 {% block body %}
   <div>  
-	<div class = "profile_avatar">{% gravatar other_user 80 %}</div>
+	<div class = "profile_avatar">{% avatar other_user 80 %}</div>
 	{% include "profiles/profile_right_panel.html" %}
     <div class="profile_info">
     
