@@ -1,9 +1,6 @@
-<form action="{% url search_form %}" method="GET"> 
-    <label for="q">Search: </label> 
-    <input type="text" name="q" value="{{ query|escape }}"> 
-    <input type="submit" value="Search"> 
-</form> 
-
-
-
-
+<div class="search_form">
+    <form action="{% url search_form %}" method="GET">  
+        <input type="text" size="5" name="q" value="{{ query|escape }}"> 
+        <input type="submit" value="Search"> 
+    </form> 
+</div>

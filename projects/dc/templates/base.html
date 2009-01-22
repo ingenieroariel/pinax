@@ -49,7 +49,11 @@
            <!-- <div class="tabs" {% block tab_id %}{% endblock %}>{% block tabs %}{% endblock %}</div> -->
             <div class="right_tab" {% block rtab_id %}{% endblock %}>{% block right_tab %}{% endblock %}
         
-        <div id="subnav" class="clearfix">{% block subnav %}&nbsp;{% endblock %}</div></div>
+        <div id="subnav" class="clearfix">
+            {% block subnav %}&nbsp;{% endblock %}
+            
+        </div>
+    </div>
         
             {% if messages %}
                 <ul id="messages">
@@ -60,7 +64,6 @@
             {% endif %}
             <div id = "logo"><h1>SpaceBook</h1></div>
 
-            {% include "search_form.html" %}
 
             {% block body %}
             {% endblock %}
@@ -83,5 +86,6 @@
         {% urchin %}
         {% block extra_body %}
         {% endblock %}
+        <!-- {% include "search_form.html" %}   -->
     </body>
 </html>

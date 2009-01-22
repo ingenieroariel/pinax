@@ -8,7 +8,7 @@
 {% block login %}
     {% if user.is_authenticated %}
         {% openid_icon openid user %}<b>{{ user }}</b> | 
-        <a href="{% url acct_email %}">{% trans "Account" %}</a> | {% if user.is_staff %}<a href="/admin/">{% trans "Admin" %}</a> | {% endif %}<a href="?next={% url acct_logout %}">{% trans "Logout" %}</a>
+        <a href="{% url acct_email %}">{% trans "Account" %}</a> | {% if user.is_staff %}<a href="/admin/">{% trans "Admin" %}</a> | {% endif %}<a href="?next={% url acct_logout %}">{% trans "Logout" %}</a>       
     {% else %}
         <a href="{% url acct_login %}">{% trans "Login" %}</a> {% trans "or" %} <a href="{% url acct_signup %}"><b>{% trans "Sign up" %}</b></a>
     {% endif %}
