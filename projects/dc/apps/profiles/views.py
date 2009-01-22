@@ -105,18 +105,19 @@ def profile(request, username, template_name="profiles/profile.html"):
             profile_form = ProfileForm(instance=other_user.get_profile())
     else:
         profile_form = None
+        
+    response_dictionary =     {
+            "profile_form": profile_form,
+            "is_me": is_me,
+            "is_friend": is_friend,
+            "is_following": is_following,
+            "other_user": other_user,
+            "other_friends": other_friends,
+            "invite_form": invite_form,
+            "previous_invitations_to": previous_invitations_to,
+            "previous_invitations_from": previous_invitations_from}
 
-    return render_to_response(template_name, {
-        "profile_form": profile_form,
-        "is_me": is_me,
-        "is_friend": is_friend,
-        "is_following": is_following,
-        "other_user": other_user,
-        "other_friends": other_friends,
-        "invite_form": invite_form,
-        "previous_invitations_to": previous_invitations_to,
-        "previous_invitations_from": previous_invitations_from,
-    }, context_instance=RequestContext(request))
+    return render_to_response(template_name, response_dictionary, context_instance=RequestContext(request))
 
 def username_autocomplete(request):
     if request.user.is_authenticated():
