@@ -1,10 +1,10 @@
 {% load i18n %}
 {% load wikiurl %}
-<div class = "wiki_block">
+
 <h2>{% trans "Wiki Articles" %}</h2>
 
 {% if owner.article_set.all %}
-    <div class = "bookmarks">
+    <div class="bookmarks">
         {% for article in owner.article_set.all %}
         <span class="{% cycle odd,even %}">
             <span class="meta">
@@ -16,8 +16,6 @@
             </span>
         </span>
         {% endfor %}
+    </span>
     </div>
-{% else %}
-    <p>{% trans "No wiki articles yet." %}</p>
 {% endif %}
-</div>
