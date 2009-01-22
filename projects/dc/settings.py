@@ -237,7 +237,7 @@ WIKI_REQUIRES_LOGIN = True
 
 # Bookmark behavior controls.
 # Set to true (default) if you want django to confirm a bookmark exists
-BOOKMARK_VERIFY_EXISTS = True
+BOOKMARK_VERIFY_EXISTS = False
 
 
 # local_settings.py can be used to override environment-specific settings
