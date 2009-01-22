@@ -8,11 +8,11 @@
 
 {% block body %}
     {% blocktrans %}
-        <p><b>Pinax</b> is a <a href="http://djangoproject.com/">Django</a> project intended to provide a starting point for websites. By integrating numerous reusable Django apps to take care of the things that many sites have in common, it lets you focus on what makes your site different.</p>
+        <p><b>Spacebook</b> is a social networking web 2.0 project created to support the NASA Science Mission Directorate and the rest of NASA. It is built using an aggregation of open source tools including 
+<a href="http://python.org/">Python</a>,
+<a href="http://djangoproject.com/">Django</a>,
+<a href="http://pinaxproject.com/">Pinax</a>, and a lot of other projects. By leveraging these tools and the support of their communities, we have had the fortune of being able to steer the direction of these tools in direction that more suits the needs of NASA and the Federal Government at large.</p>
         
-        <p>This site is just a running example of Pinax. The source code is available as part of the <a href="http://code.google.com/p/django-hotclub/">Hot Club of France</a> project.</p>
-        
-        <p>If you have any questions about this site or the <b>Pinax</b> project, please <a href="mailto:jtauber@jtauber.com">contact James Tauber</a>.</p>
     {% endblocktrans %}
     
     {% if user.is_authenticated %}
@@ -23,7 +23,7 @@
         {% url acct_login as login_url %}
         <p>{% blocktrans %}You can <a href="{{ signup_url }}">Sign up</a> and <a href="{{ login_url }}">Log in</a> to try out the site.{% endblocktrans %}</p>
         
-        <p><b>{% blocktrans %}At this stage, there is openid support, email verification, password management, site announcements, user-to-user messaging, friend invitation (both internal and external to the site), a basic twitter clone, interest groups (called tribes), projects with basic task and issue management, threaded discussions, wikis, blogging, bookmarks, contact import (from vCard, Google or Yahoo), photo management and a notification framework.{% endblocktrans %}</b></p>
+        <p><b>{% blocktrans %}At this stage, there is openid support, email verification, password management, site announcements, user-to-user messaging, friend invitation (both internal and external to the site), a basic twitter clone, interest groups, projects with basic task and issue management, threaded discussions, wikis, blogging, bookmarks, contact import (from vCard, Google or Yahoo), photo management and a notification framework.{% endblocktrans %}</b></p>
     {% endif %}
     
 {% endblock %}
