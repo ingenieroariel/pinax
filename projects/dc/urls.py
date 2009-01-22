@@ -101,9 +101,12 @@ urlpatterns += patterns('',
     url('^bookmarks/friends_bookmarks/$', 'friends_app.views.friends_objects', kwargs=friends_bookmarks_kwargs, name="friends_bookmarks"),
 )
 
+###############################################################################
+# Override the stock 'site_media' location with our custom branding directory,
+# pulled from our private SVN repo.
 if settings.SERVE_MEDIA:
     urlpatterns += patterns('',
         (r'^site_media/(?P<path>.*)$', 'django.views.static.serve',
-            {'document_root': os.path.join(os.path.dirname(__file__), "site_media")}),
+            {'document_root': os.path.join(os.path.dirname(__file__), "site_media_custom")}),
     )
 
