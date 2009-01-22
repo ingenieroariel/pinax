@@ -2,20 +2,19 @@
 {% load avatar_tags %}
 
 {% if is_me %}
+  {% if other_user.tribe_set.all %}
     <div class="tribes">
         <h2>{% trans "Your Groups" %}</h2>
-        {% if other_user.tribe_set.all %}
+        
             {% for tribe in other_user.tribe_set.all %}
                 <a href="{% url tribes.views.tribe tribe.slug %}">{{ tribe.name }}</a>
             {% endfor %}
-        {% else %}
-            {% url tribe_thing_list "" as tribe_url %}
-            <p>{% blocktrans %}You are not yet a member of any <a href="{{ tribe_url }}">groups</a>.{% endblocktrans %}</p>
-        {% endif %}
     </div>
+ {% endif %}
+ 
+ {% if other_friends %}
     <div class="friends">
         <h2>{% trans "Your Friends" %}</h2>
-        {% if other_friends %}
             <div>
                 {% for friendship in other_friends %}
                 {% if forloop.counter0|divisibleby:"3" %}<tr>{% endif %}
@@ -27,25 +26,21 @@
                 {% endfor %}
                 {% if other_friends|length|divisibleby:"3" %}{% else %}</div>{% endif %}
             </div>
-        {% else %}
-            <p>{% blocktrans %}None. You should look at the list of <a href="/profiles/">profiles</a> and see if there's anyone you know.{% endblocktrans %}</p>
-        {% endif %}
     </div>
-<div class = "photo_block">
-<h2>{% trans "Photos" %}</h2>
-
-    {% if owner.added_photos.all %}
+  {% endif %}
+  
+  {% if owner.added_photos.all %}  
+	<div class = "photo_block">
+		<h2>{% trans "Photos" %}</h2>
         <div class="clearfix">
-        {% for photo in owner.added_photos.all %}
-            <div class="gallery-photo-thumb">
-                <a href="/photos/details/{{ photo.id }}/"><img src="{{ photo.get_thumbnail_url }}" alt="{{ photo.title }}"/></a>
-            </div>
-        {% endfor %}
+			{% for photo in owner.added_photos.all %}
+				<div class="gallery-photo-thumb">
+					<a href="/photos/details/{{ photo.id }}/"><img src="{{ photo.get_thumbnail_url }}" alt="{{ photo.title }}"/></a>
+				</div>
+			{% endfor %}
         </div>
-    {% else %}
-       {% trans "No photos uploaded yet." %}
-    {% endif %}
-</div>
+	</div>
+  {% endif %}
 {% endif %}
 
 {% if is_friend %}
