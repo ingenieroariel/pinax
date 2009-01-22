@@ -1,10 +1,10 @@
 {% extends "tribes/base.html" %}
 
-{% load microblogging %}
+{% load zwitschern %}
 {% load i18n %}
 {% load wiki %}
 {% load wikiurl %}
-{% load avatar %}
+{% load gravatar %}
 {% load threadedcommentstags %}
 {% load pagination_tags %}
 {% load extra_tagging_tags %}
@@ -16,14 +16,25 @@
 {% block body %}
 
     {% if user.is_authenticated %}
-        <div class="right_panel">
-            <div class="members">
+        <div class="skinny_column">
+			  <div class = "group_info">
+        <h1>{% trans "Group" %}: {{ tribe.name }}</h1>
+
+        <p>
+            {% trans "Slug:" %} <tt>{{ tribe.slug }}</tt><br />
+            {% trans "Creator:" %} <a href="{% url profiles.views.profile tribe.creator.username %}">{{ tribe.creator }}</a><br />
+            {% trans "Created:" %} {{ tribe.created|date }}
+            <br />
+            {% show_tags_for tribe %}
+        </p>
+	  </div>
+            <div class="tribe_members">
                 <h2>{% trans "Members" %}</h2>
                 <div>
                     {% for member in tribe.members.all %}
                         {% if forloop.counter0|divisibleby:"3" %}<div>{% endif %}
                         <span>
-                            <div class="avatar">{% avatar member 40 %}</div>
+                            <div class="avatar">{% gravatar member 40 %}</div>
                             <div class="details"><a href="{% url profiles.views.profile member.username %}" title="{{ member.username }}">{{ member.username }}</a></div>
                         </span>
                         {% if forloop.counter0|add:"1"|divisibleby:"3" %}</div>{% endif %}
@@ -34,18 +45,10 @@
         </div>
     {% endif %}
 
-    <div style="width: 550px;">
+    <div class = "content_column">
 
-        <h1>{% trans "Group" %} {{ tribe.name }}</h1>
 
-        <p>
-            {% trans "Slug:" %} <tt>{{ tribe.slug }}</tt><br />
-            {% trans "Creator:" %} <a href="{% url profiles.views.profile tribe.creator.username %}">{{ tribe.creator }}</a><br />
-            {% trans "Created:" %} {{ tribe.created|date }}
-            <br />
-            {% show_tags_for tribe %}
-        </p>
-
+	  <div class = "group_desc">
         <p>{{ tribe.description }}</p>
 
         {% ifequal user tribe.creator %}
@@ -58,24 +61,26 @@
                         <input type="submit" value="{% trans 'update' %}"/>
                     </div>
             </form>
-            
+	  </div>
+	  <div class = "group_delete">	  
             {% ifequal tribe.members.all.count 1 %}
-                <p><img src="/site_media/delete.png" /> <a href="#" onclick="$('#delete_tribe_form').toggle(); return false;">{% trans "Delete tribe" %}</a><p>
+                <p><img src="/site_media/delete.png" /> <a href="#" onclick="$('#delete_tribe_form').toggle(); return false;">{% trans "Delete group" %}</a><p>
                  <form class="delete_form" id="delete_tribe_form" action="{% url tribe_delete tribe.slug %}" method="POST" style="display: none;">
                      <input type="submit" value="{% trans "Delete Group" %}" /> (all content will be removed)
                 </form>
             {% else %}
-                <p>You are not the only member of the tribe so you can't delete the tribe.</p>
+                <p>You are not the only member of the group so you can't delete the group.</p>
             {% endifequal %}
-            
+      </div>      
         {% endifequal %}
 
+	<div class = "group_join">
         {% if user.is_authenticated %}
             <div>
                 <form method="POST" action="">
                     {% if are_member %}
                         {% ifequal user tribe.creator %}
-                            <p>{% trans "You are the creator of this tribe so can't leave (yet)." %}</p>
+                            <p>{% trans "You are the creator of this group so can't leave (yet)." %}</p>
                         {% else %}
                             <input type="hidden" name="action" value="leave" />
                             <input type="submit" value="{% trans 'leave' %}"/>
@@ -91,9 +96,11 @@
             {% url acct_login as login_url %}
             <p>{% blocktrans %}<a href="{{ signup_url }}">Sign up</a> and <a href="{{ login_url }}">log in </a> to join this tribe.{% endblocktrans %}</p>
         {% endif %}
+	</div>
 
 
         {% if user.is_authenticated %}
+		<div class = "group_discuss">
             <h2>{% trans "Discussion Topics" %}{% if tribe.topics.all.count %} ({{ tribe.topics.all.count }}){% endif %}</h2>
 
             {% if topics %}
@@ -105,8 +112,9 @@
                 {% url tribe_topics tribe.slug as new_tribe_url %}
                 <p>{% blocktrans %}None yet. <a href="{{ new_tribe_url }}">Start one...</a>{% endblocktrans %}</p>
             {% endif %}
+			</div>
 
-
+			<div class = "group_wiki">
             <h2>{% trans "Wiki Articles" %}{% if total_articles %} ({{ total_articles }}){% endif %}</h2>
 
             {% if articles %}
@@ -124,13 +132,15 @@
                     {% endblocktrans %}
                 </p>
             {% endif %}
+			</div>
 
-
-            <h2>{% trans "Tweets" %}</h2>
+			<div class = "group_status">
+            <h2>{% trans "Status Updates" %}</h2>
 
             {% tweet_listing tweets 1 0 %}
+			</div>
 
-
+			<div class = "group_photos">
             {% if photos %}
                 <h2>Group Photo Pool</h2>
                 <div class="thumb-row clearfix">
@@ -142,6 +152,7 @@
                    {% endfor %}
                </div>
             {% endif %}
+			</div>
 
 
         {% endif %}

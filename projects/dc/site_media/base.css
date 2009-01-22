@@ -65,7 +65,7 @@ td {
 }
 
 #body #logo {
-    background: #fff url(/site_media/spacebook_logo.png) no-repeat 0 0;
+    background: #fff url(/site_media/sub_logo.png) no-repeat 0 0;
     width: 260px;
     height: 6em;
    /* z-index: -999;*/
@@ -97,7 +97,25 @@ h2 {
     font-size: 1.5em;
 }
 
+h3 {
+	font-size: 1.2em;
+	font-weight: bold;
+	padding: 0;
+	margin: 0;
+}
 
+h4 {
+	font-size: 1.2em;
+	font-weight: bold;
+	padding: 0;
+	margin: 0;
+	color: #FF6600;
+}
+
+#body .skinny_column {
+	width: 20em;
+	float: left;
+}
 
 /*
 						FOOTER
@@ -585,7 +603,6 @@ table.messages tr th {
 
 
 .friends,
-.profile_info,
 .photo_block,
 .tribes {
     width: 270px;
@@ -601,9 +618,10 @@ table.messages tr th {
 .wiki_block,
 .blog_block,
 .status_block,
-.bookmarks_block {
+.bookmarks_block,
+.profile_info {
     width: 580px;
-    border: 1px solid #eeeeee;
+    border-bottom: 1px solid #cecece;
     margin-left: 280px;
     padding: 1em;
     margin-bottom: 1em;
@@ -970,6 +988,38 @@ p.what_next {
     border-top: 1px solid #CCC;
     font-size: 90%;
 }
+
+#body .project_info,
+#body .project_members {
+	width: 20em;
+	float: left;
+}
+
+#body .project_discussion,
+#body .project_wiki,
+#body .project_tasks,
+#body .project_desc {
+	width: 45em;
+	float: right;
+}
+
+
+
+#body .group_info,
+#body .tribe_members {
+	width: 20em;
+	float: left;
+}
+#body .group_join,
+#body .group_discuss,
+#body .group_status,
+#body .group_wiki,
+#body .group_desc,
+#body .group_delete {
+	width: 45em;
+	float: right;
+}
+
 
 
 /* 
