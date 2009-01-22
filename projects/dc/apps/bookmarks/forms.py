@@ -5,9 +5,14 @@ from tagging.forms import TagField
 
 from bookmarks.models import Bookmark, BookmarkInstance
 
+try:
+    from settings import BOOKMARK_VERIFY_EXISTS
+except ImportError:
+    BOOKMARK_VERIFY_EXISTS = True
+
 class BookmarkInstanceForm(forms.ModelForm):
 
-    url = forms.URLField(label = "URL", verify_exists=False, widget=forms.TextInput(attrs={"size": 40}))
+    url = forms.URLField(label = "URL", verify_exists=BOOKMARK_VERIFY_EXISTS, widget=forms.TextInput(attrs={"size": 40}))
     description = forms.CharField(max_length=100, widget=forms.TextInput(attrs={"size": 40}))
     redirect = forms.BooleanField(label="Redirect", required=False)
     tags = TagField(label="Tags", required=False)

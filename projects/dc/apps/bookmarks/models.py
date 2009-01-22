@@ -1,14 +1,3 @@
-from datetime import datetime
-import urlparse
-
-from django.db import models
-from django.utils.translation import ugettext_lazy as _
-
-from django.contrib.auth.models import User
-
-from tagging.fields import TagField
-from tagging.models import Tag
-
 """
 A Bookmark is unique to a URL whereas a BookmarkInstance represents a
 particular Bookmark saved by a particular person.
@@ -22,10 +11,28 @@ bookmark but allows for per-user tagging.
 # some notion of voting for the best description and note from
 # amongst those in the instances.
 
+from datetime import datetime
+import urlparse
+
+from django.db import models
+from django.utils.translation import ugettext_lazy as _
+
+from django.contrib.auth.models import User
+
+from tagging.fields import TagField
+from tagging.models import Tag
+
+try:
+    from settings import BOOKMARK_VERIFY_EXISTS
+except ImportError:
+    BOOKMARK_VERIFY_EXISTS = True
+
+
+
 class Bookmark(models.Model):
     
     # URL is set to false per dc-special ticket #14
-    url = models.URLField(verify_exists=False,unique=True)
+    url = models.URLField(verify_exists=BOOKMARK_VERIFY_EXISTS,unique=True)
     description = models.CharField(_('description'), max_length=100)
     note = models.TextField(_('note'), blank=True)
     

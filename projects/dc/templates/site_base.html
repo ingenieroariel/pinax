@@ -6,8 +6,8 @@
 #}
 {% load svn_app_version %}
 {% block login %}
+    {{ user }}
     {% if user.is_authenticated %}
-
         {% openid_icon openid user %}<b>{{ user }}</b> | 
         <a href="{% url acct_email %}">{% trans "Account" %}</a> | {% if user.is_staff %}<a href="/admin/">{% trans "Admin" %}</a> | {% endif %}<a href="?next={% url acct_logout %}">{% trans "Logout" %}</a>
     {% else %}

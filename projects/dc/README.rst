@@ -59,6 +59,20 @@ Customizations
  * http://pinaxproject.com/docs/trunk/customization.html
  
 ----
+
+Responsible Parties
+====================
+
+ * |dg| (development)
+ * |cs| (engineering and development)
+ * |kc| (development, css, and organization)
+ * |ck| (usability)
+ * |jt| and the |pt| (Pinax itself and lots of help)
+ * |jm| (graphic design)
+ * |wk| (css)
+ * |ct| (project management)
+ 
+----
  
 .. class:: gentime
 
@@ -71,12 +85,14 @@ This document was generated on |date| at |time|.
 .. |dg| replace:: Daniel Greenfeld
 .. |gw| replace:: George Williams
 .. |jr| replace:: James Saint-Rossy
+.. |jt| replace:: James Tauber
 .. |jen| replace:: Jenny Mottar
 .. |jc| replace:: Jim Consalvi
 .. |kc| replace:: Katie Cunningham
-.. |ma| replace:: Malik Ahmad
+.. |wk| replace:: William Keeter
 .. |mem| replace:: Meredith Mengel
 .. |rn| replace:: Ruth Netting
+.. |pt| replace:: Pinax Team
 .. |ts| replace:: Tim Smith
 
 

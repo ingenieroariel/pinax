@@ -235,6 +235,11 @@ WIKI_REQUIRES_LOGIN = True
 # following URL: https://developer.yahoo.com/wsregapp/
 # YAHOO_MAPS_API_KEY = ''
 
+# Bookmark behavior controls.
+# Set to true (default) if you want django to confirm a bookmark exists
+BOOKMARK_VERIFY_EXISTS = False
+
+
 # local_settings.py can be used to override environment-specific settings
 # like database and email that differ between development and production.
 try:
