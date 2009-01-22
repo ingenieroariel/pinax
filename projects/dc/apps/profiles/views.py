@@ -115,7 +115,8 @@ def profile(request, username, template_name="profiles/profile.html"):
             "other_friends": other_friends,
             "invite_form": invite_form,
             "previous_invitations_to": previous_invitations_to,
-            "previous_invitations_from": previous_invitations_from}
+            "previous_invitations_from": previous_invitations_from,
+            "owner":None}
 
     return render_to_response(template_name, response_dictionary, context_instance=RequestContext(request))
 
