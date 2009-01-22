@@ -3,3 +3,20 @@
 
 <h2>{% trans "Wiki Articles" %}</h2>
 
+
+{% if owner.article_set.all %}
+    <div class="bookmarks">
+        {% for article in owner.article_set.all %}
+            <span class="{% cycle odd,even %}">
+                <span class="meta">
+                    {{ article.created_at|date }}
+                </span>
+                <span>
+                    <h2><a href="{% wikiurl article article.group article %}">{{ article.title }}</a></h2>
+                    <div class="body">{{ article.content|truncatewords:25 }}</div>
+                </span>
+            </span>
+        {% endfor %}
+    </span>
+    </div>
+{% endif %}
