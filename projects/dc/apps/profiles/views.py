@@ -106,7 +106,7 @@ def profile(request, username, template_name="profiles/profile.html"):
     else:
         profile_form = None
         
-    response_dictionary =     {
+    response_dictionary = {
             "profile_form": profile_form,
             "is_me": is_me,
             "is_friend": is_friend,
