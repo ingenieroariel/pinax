@@ -1,10 +1,11 @@
 {% load i18n %}
 {% load wikiurls %}
 
+{% if owner.article_set.all %}
 <h2>{% trans "Wiki Articles" %}</h2>
 
 
-{% if owner.article_set.all %}
+
     <div class="bookmarks">
         {% for article in owner.article_set.all %}
         <span class="{% cycle odd,even %}">
