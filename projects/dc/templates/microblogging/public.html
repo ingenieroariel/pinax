@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load microblogging_tags %}
 
-{% block head_title %}{% blocktrans %}Public Tweets{% endblocktrans %}{% endblock %}
+{% block head_title %}{% blocktrans %}Public Statuses{% endblocktrans %}{% endblock %}
 
 {% block extra_head %}
     {# @@@ use url tag #}
@@ -11,9 +11,9 @@
 {% endblock %}
 
 {% block body %}
-    <h1>{% trans "All Tweets" %}</h1>
+    <h1>{% trans "All Statuses" %}</h1>
     
-    <p>{% trans "These are tweets from everyone:" %}</p>
+    <p>{% trans "These are statuses from everyone:" %}</p>
     
     {% tweet_listing tweets 1 0 %}
 {% endblock %}

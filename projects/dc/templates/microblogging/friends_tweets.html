@@ -4,12 +4,12 @@
 {% load oembed_tags %}
 {% load pagination_tags %}
 
-{% block head_title %}{% blocktrans %}Friends' Tweets{% endblocktrans %}{% endblock %}
+{% block head_title %}{% blocktrans %}Friends' Statuses{% endblocktrans %}{% endblock %}
 
 {% block body %}
-    <h2>{% trans "Friends' Tweets" %}</h2>
+    <h2>{% trans "Friends' Statuses" %}</h2>
     
-    <p>{% trans "These are tweets from your friends:" %}</p>
+    <p>{% trans "These are statuses from your friends:" %}</p>
     
     {% if object_list %}
         
@@ -25,7 +25,7 @@
              </div>
         {% endfor %}
     {% else %}
-        <p>{% blocktrans %}No tweets yet.{% endblocktrans %}</p>
+        <p>{% blocktrans %}No statuses yet.{% endblocktrans %}</p>
     {% endif %}
     
     {% paginate %}

@@ -10,7 +10,7 @@
     
     {% url profiles.views.profile other_user.username as other_user_url %}
     
-    <p>{% blocktrans %}Followers of <a href="{{ other_user_url }}">{{ other_user }}</a>'s tweets:{% endblocktrans %}</p>
+    <p>{% blocktrans %}Followers of <a href="{{ other_user_url }}">{{ other_user }}</a>'s statuses:{% endblocktrans %}</p>
     
     {% if follow_list %}
         {% for following_user in follow_list %}

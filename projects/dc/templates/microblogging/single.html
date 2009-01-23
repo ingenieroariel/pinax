@@ -3,12 +3,12 @@
 {% load i18n %}
 {% load oembed_tags %}
 
-{% block head_title %}{% blocktrans %}Single Tweet{% endblocktrans %}{% endblock %}
+{% block head_title %}{% blocktrans %}Single Status{% endblocktrans %}{% endblock %}
 
 {% block body %}
-    <h1>{% trans "Single Tweet" %}</h1>
+    <h1>{% trans "Single Status" %}</h1>
     
-    <p>Here is a single tweet from {{ tweet.sender.username }}:</p>
+    <p>Here is a single status from {{ tweet.sender.username }}:</p>
     
         <div class="tweet" id="t{{ tweet.id }}">
         <a href="{% url profiles.views.profile tweet.sender %}"><b>{{ tweet.sender }}</b></a>
