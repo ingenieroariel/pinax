@@ -1,5 +1,7 @@
 {% load i18n %}
 {% load avatar_tags %}
+{% load project_tags %}
+
 
 {% if is_me %}
   {% if other_user.tribe_set.all %}
@@ -11,6 +13,7 @@
             {% endfor %}
     </div>
  {% endif %}
+
  
  {% if other_friends %}
     <div class="friends">
