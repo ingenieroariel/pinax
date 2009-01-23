@@ -180,7 +180,7 @@ NOTIFICATION_LANGUAGE_MODULE = 'account.Account'
 EMAIL_CONFIRMATION_DAYS = 2
 EMAIL_DEBUG = DEBUG
 CONTACT_EMAIL = "feedback@example.com"
-SITE_NAME = "Spacebook"
+SITE_NAME = "Pinax"
 LOGIN_URL = "/account/login"
 LOGIN_REDIRECT_URLNAME = "what_next"
 
@@ -247,3 +247,5 @@ try:
 except ImportError:
     pass
 
+AVATAR_DEFAULT_URL =  MEDIA_URL + 'person_icon.jpg'
+AVATAR_GRAVATAR_BACKUP = False
