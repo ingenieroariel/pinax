@@ -16,21 +16,32 @@
             <legend>{% trans "Editing Post" %}</legend>
 
         {% ifequal post.author request.user %}
-            <form method="POST" action="">
-                    <div class = "form_block">{{ blog_form.non_field_errors }}</div>
-                    {% for field in blog_form %}
-                        {% if field.errors %}<div class = "form_block">{{ field.errors }}</div>{% endif %}
-                        {% ifequal field.name "tease" %}<div id="teaser">{% else %}{% endifequal %}
-                            <div class = "form_block">{{ field.label_tag }}
-                                    {% ifequal field.name "body" %}
-                                    <a href="#" onclick="$('#teaser').toggle(); return false;">{% trans "Teaser" %}</a>
-                                    {% endifequal %}
-                            </div>
-                            <div class = "form_block">{{ field }}</div>
-                        {% if field.help_text %}<div class = "form_block">{{ field.help_text }}</div>{% endif %}
-                    {% endfor %}
-                    <div><input type="hidden" name="action" value="update" /><input type="submit" value="update" class = "button"/></div>
-                
+            <form method="POST" action="" class="uniForm">
+            <div class = "form_block">
+                {{ blog_form.non_field_errors }}
+            </div>
+            {% for field in blog_form %}
+            <div 
+                class="ctrlHolder {% if field.errors %}error{% endif %}"
+                {% ifequal field.name "tease" %}
+                    id="teaser" style="display:     none;" 
+                {% endifequal %}>
+                {% for error in field.errors %}
+                    <p class="errorField">
+                        <strong>{{ error }}</strong>
+                    </p>       
+                {% endfor %}                
+                {{ field.label_tag }}
+                {{ field.help_text }}
+                {% ifequal field.name "body" %}
+                        <a href="#" onclick="$('#teaser').toggle(); return false;">{% trans "Teaser" %}</a>
+                {% endifequal %}
+                {{ field }}
+            </div>                
+            {% endfor %}
+            <div class="form_block">
+                <input type="hidden" name="action" value="update" />
+                <input type="submit" value="update" class = "button"/></div>
             </form>
         {% else %}
             <p>You are not the author of this post.</p>
