@@ -30,6 +30,8 @@
                             <div class="body">{{ bookmark_instance.note|linebreaks }}</div>
                         {% endif %}
                         <div class="url">{% if bookmark_instance.bookmark.get_favicon_url %}<img src="{{ bookmark_instance.bookmark.get_favicon_url }}" height="16" width="16"/> {% endif %}{{ bookmark_instance.bookmark.url }}</div>
+                        <a href="{% url edit_bookmark_instance bookmark_instance.id %}">{% trans "Edit Bookmark" %}</a>
+                      <a href="{% url delete_bookmark_instance bookmark_instance.id %}">{% trans "Delete Bookmark" %}</a>                        
                     </td>
                 </tr>
             {% endfor %}
