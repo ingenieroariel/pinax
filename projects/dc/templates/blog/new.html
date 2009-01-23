@@ -8,9 +8,10 @@
 
     <div id="basic-form">
         <fieldset>
+                <legend>Write a blog post</legend>
         <form method="POST" action="" class="uniForm">
 
-                <legend>Write a blog post</legend>
+
             {% for field in blog_form %}                
                 <div 
                 class="ctrlHolder {% if field.errors %}error{% endif %}"
