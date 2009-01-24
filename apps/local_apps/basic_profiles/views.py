@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.contrib.auth.models import User
@@ -15,9 +16,9 @@ from basic_profiles.forms import ProfileForm
 # # used by friend autocompletion
 # from gravatar.templatetags.gravatar import gravatar
 
-try:
+if "notification" in settings.INSTALLED_APPS:
     from notification import models as notification
-except ImportError:
+else:
     notification = None
 
 def profiles(request, template_name="basic_profiles/profiles.html"):

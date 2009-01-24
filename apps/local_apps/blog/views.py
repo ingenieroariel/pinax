@@ -1,3 +1,4 @@
+import datetime
 from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponseRedirect, Http404
 from django.template import RequestContext
@@ -10,13 +11,11 @@ from django.conf import settings
 
 from blog.models import Post
 from blog.forms import *
-import datetime
 
-try:
+if "notification" in settings.INSTALLED_APPS:
     from notification import models as notification
-except ImportError:
+else:
     notification = None
-
 try:
     from friends.models import Friendship
     friends = True

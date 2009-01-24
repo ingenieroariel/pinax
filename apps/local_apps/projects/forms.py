@@ -1,12 +1,13 @@
 from datetime import datetime
 
 from django import forms
+from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
-
 from django.contrib.auth.models import User
-try:
+
+if "notification" in settings.INSTALLED_APPS:
     from notification import models as notification
-except ImportError:
+else:
     notification = None
 
 from projects.models import Project, Topic, Task, ProjectMember

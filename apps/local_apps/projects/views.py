@@ -1,18 +1,17 @@
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
+from django.conf import settings
 from django.http import HttpResponseRedirect, Http404
-
 from django.core.urlresolvers import reverse
-
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
 from projects.models import Project
 from projects.forms import *
 
-try:
+if "notification" in settings.INSTALLED_APPS:
     from notification import models as notification
-except ImportError:
+else:
     notification = None
 
 try:

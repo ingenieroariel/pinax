@@ -1,19 +1,19 @@
 from datetime import datetime
 
 from django.db import models
-from django.db.models import signals
+from django.conf import settings
 from django.utils.html import escape
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.contenttypes import generic
-
 from django.contrib.auth.models import User
+
 from tagging.fields import TagField
 from tagging.models import Tag
 from photos.models import Pool
 
-try:
+if "notification" in settings.INSTALLED_APPS:
     from notification import models as notification
-except ImportError:
+else:
     notification = None
 
 from wiki.views import get_articles_for_object
@@ -148,4 +148,4 @@ def new_comment(sender, instance, **kwargs):
         project = task.project
         if notification:
             notification.send(project.member_users.all(), "projects_task_comment", {"user": instance.user, "task": task, "project": project, "comment": instance})
-signals.post_save.connect(new_comment, sender=ThreadedComment)
+models.signals.post_save.connect(new_comment, sender=ThreadedComment)

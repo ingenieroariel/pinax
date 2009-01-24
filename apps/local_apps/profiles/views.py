@@ -2,6 +2,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseForbidden
+from django.conf import settings
 
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ugettext
@@ -17,9 +18,9 @@ from profiles.forms import ProfileForm
 from avatar.templatetags.avatar_tags import avatar
 #from gravatar.templatetags.gravatar import gravatar as avatar
 
-try:
+if "notification" in settings.INSTALLED_APPS:
     from notification import models as notification
-except ImportError:
+else:
     notification = None
 
 def profiles(request, template_name="profiles/profiles.html"):

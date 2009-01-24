@@ -2,16 +2,14 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.http import HttpResponseRedirect, HttpResponse, HttpResponseForbidden, Http404
-
+from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from tribes.models import Tribe
-from tribes.forms import *
-from django.core.urlresolvers import reverse
+from django.conf import settings
 
-try:
+if "notification" in settings.INSTALLED_APPS:
     from notification import models as notification
-except ImportError:
+else:
     notification = None
 
 try:
@@ -33,6 +31,8 @@ try:
 except ImportError:
     wiki = False
 
+from tribes.models import Tribe
+from tribes.forms import *
 from microblogging.models import TweetInstance
 
 from schedule.models import Calendar, CalendarRelation
