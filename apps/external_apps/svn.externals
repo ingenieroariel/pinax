@@ -1,8 +1,8 @@
-emailconfirmation http://django-email-confirmation.googlecode.com/svn/trunk/devproject/emailconfirmation
+emailconfirmation http://django-email-confirmation.googlecode.com/svn/trunk/emailconfirmation
 django_extensions http://django-command-extensions.googlecode.com/svn/trunk/django_extensions
 robots http://django-robots.googlecode.com/svn/trunk/robots
 dbtemplates http://django-dbtemplates.googlecode.com/svn/trunk/dbtemplates
-friends http://django-friends.googlecode.com/svn/trunk/friendsdev/friends
+friends http://django-friends.googlecode.com/svn/trunk/friends
 notification http://django-notification.googlecode.com/svn/trunk/notification
 mailer http://django-mailer.googlecode.com/svn/trunk/mailer
 messages http://django-messages.googlecode.com/svn/trunk/messages
@@ -25,7 +25,7 @@ avatar http://django-avatar.googlecode.com/svn/trunk/avatar
 gravatar http://django-gravatar.googlecode.com/svn/trunk/gravatar
 swaps http://django-social-economics.googlecode.com/svn/trunk/django-social-economics/swaps/
 flag http://django-flag.googlecode.com/svn/trunk/flag/
-things http://django-things.googlecode.com/svn/trunk/things/
+#things http://django-things.googlecode.com/svn/trunk/things/
 locations http://django-locations.googlecode.com/svn/trunk/locations/
 schedule http://django-schedule.googlecode.com/svn/trunk/schedule/
 microblogging http://django-microblogging.googlecode.com/svn/trunk/microblogging/
