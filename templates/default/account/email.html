@@ -55,13 +55,18 @@
     {% else %} {# no user.emailaddress_set.all #}
         <p><span class="warning">{% trans "None" %}</span>. {% trans "You should really add one so you can receive notifications, reset your password if you forget it, etc." %}</p>
     {% endif %}
-    
+
     <h3>{% trans "Add Email Address" %}</h3>
-    
-    <form method="post" action="">
-        <table>
-            {{ add_email_form.as_table }}
-            <tr><td></td><td><input type="hidden" name="action" value="add"/><input type="submit" value="{% trans "add" %}"/></td></tr>
-        </table>
+    <form method="post" action="" class="uniForm">
+        <fieldset class="inlineLabels">            
+            {{ add_email_form|as_uni_form }}
+             <div class = "form_block">
+                 <input type="hidden" name="action" value="add"/>
+                 <input type="submit" value="{% trans "add" %}"/>
+            </div>
+        </fieldset>
     </form>
+    
+    
+    
 {% endblock %}
