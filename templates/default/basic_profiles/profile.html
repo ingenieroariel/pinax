@@ -1,12 +1,13 @@
 {% extends "basic_profiles/base.html" %}
 
 {% load i18n %}
+{% load uni_form %}
 
 {% block head_title %}{% blocktrans %}Profile for {{ other_user }}{% endblocktrans %}{% endblock %}
 
 {% block body %}
     
-    <div class="right_panel">
+    <div class="right_panel">sad
         {% include "basic_profiles/profile_right_panel.html" %}
     </div>
     
@@ -22,13 +23,16 @@
     
     {% if user.is_authenticated %}
         {% if is_me %}
-            <p><a href="#" onclick="$('#profile_form').toggle(); return false;">{% trans "Edit profile" %}</a></p>
+            <p><a href="#" onclick="$('#profile_form').toggle(); return false;">{% trans "Edit profile" %}</a>asd</p>
             
-            <form id="profile_form" method="POST" action="" style="display: none;">
-                <table>
-                    {{ profile_form }}
-                    <tr><td></td><td><input type="hidden" name="action" value="update" /><input type="submit" value="{% trans "update" %}"/></td></tr>
-                </table>
+            <form class="uniForm" id="profile_form" method="POST" action="" style="display: none;">
+                <fieldset class="inlineLabels">  
+                    {{ profile_form|as_uni_form }}
+                    <div class="form_block">
+                    <input type="hidden" name="action" value="update" />
+                    <input type="submit" value="{% trans "update" %}"/>
+                    </div>
+                </fieldset>
             </form>
         {% endif %}
     {% endif %}
