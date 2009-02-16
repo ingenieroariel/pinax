@@ -49,7 +49,7 @@ USE_I18N = True
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
 
-MEDIA_ROOT = os.path.join(os.path.dirname(__file__), "site_media")
+MEDIA_ROOT = os.path.join(os.path.dirname(__file__), "media")
 
 # URL that handles the media served from MEDIA_ROOT.
 # Example: "http://media.lawrence.com"
@@ -149,7 +149,7 @@ INSTALLED_APPS = (
     'bookmarks',
     'blog',
     'ajax_validation',
-    'photologue',
+    'imagekit',
     'avatar',
     'flag',
     'schedule',

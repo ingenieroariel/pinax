@@ -8,8 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
-from photologue.models import *
-from photos.models import Image
+from photos.models import Photo
 from photos.forms import PhotoUploadForm, PhotoEditForm
 from projects.models import Project
 from tribes.models import Tribe
@@ -39,7 +38,7 @@ def yourphotos(request, template_name="photos/yourphotos.html"):
     """
     photos for the currently authenticated user
     """
-    photos = Image.objects.filter(member=request.user).order_by("-date_added")
+    photos = Photo.objects.filter(member=request.user).order_by("-date_added")
     return render_to_response(template_name, {
         "photos": photos,
     }, context_instance=RequestContext(request))
@@ -49,7 +48,7 @@ def photos(request, template_name="photos/latest.html"):
     """
     latest photos
     """
-    photos = Image.objects.filter(
+    photos = Photo.objects.filter(
         Q(is_public=True) |
         Q(is_public=False, member=request.user)
     ).order_by("-date_added")
@@ -62,11 +61,11 @@ def details(request, id, template_name="photos/details.html"):
     """
     show the photo details
     """
-    photo = get_object_or_404(Image, id=id)
+    photo = get_object_or_404(Photo, id=id)
     # @@@: test
     if not photo.is_public and request.user != photo.member:
         raise Http404
-    photo_url = photo.get_display_url()
+    photo_url = photo.display.url
     
     tribes = []
     projects = []
@@ -191,7 +190,7 @@ def memberphotos(request, username, template_name="photos/memberphotos.html"):
     Get the members photos and display them
     """
     user = get_object_or_404(User, username=username)
-    photos = Image.objects.filter(member__username=username, is_public=True).order_by("-date_added")
+    photos = Photo.objects.filter(member__username=username, is_public=True).order_by("-date_added")
     return render_to_response(template_name, {
         "photos": photos,
     }, context_instance=RequestContext(request))
@@ -199,8 +198,8 @@ memberphotos = login_required(memberphotos)
 
 def edit(request, id, form_class=PhotoEditForm,
         template_name="photos/edit.html"):
-    photo = get_object_or_404(Image, id=id)
-    photo_url = photo.get_display_url()
+    photo = get_object_or_404(Photo, id=id)
+    photo_url = photo.display.url
 
     if request.method == "POST":
         if photo.member != request.user:
@@ -228,7 +227,7 @@ def edit(request, id, form_class=PhotoEditForm,
 edit = login_required(edit)
 
 def destroy(request, id):
-    photo = Image.objects.get(pk=id)
+    photo = Photo.objects.get(pk=id)
     title = photo.title
     if photo.member != request.user:
         request.user.message_set.create(message="You can't delete photos that aren't yours")

@@ -62,11 +62,11 @@ urlpatterns = patterns('',
 
 ## @@@ for now, we'll use friends_app to glue this stuff together
 
-from photos.models import Image
+from photos.models import Photo
 
 friends_photos_kwargs = {
     "template_name": "photos/friends_photos.html",
-    "friends_objects_function": lambda users: Image.objects.filter(member__in=users),
+    "friends_objects_function": lambda users: Photo.objects.filter(member__in=users),
 }
 
 from blog.models import Post

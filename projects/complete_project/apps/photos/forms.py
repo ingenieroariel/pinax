@@ -2,12 +2,12 @@ from django import forms
 from datetime import datetime
 from django.utils.translation import ugettext_lazy as _
 
-from photos.models import Image
+from photos.models import Photo
 
 class PhotoUploadForm(forms.ModelForm):
     
     class Meta:
-        model = Image
+        model = Photo
         exclude = ('member','photoset','title_slug','effect','crop_from')
         
     def __init__(self, user=None, *args, **kwargs):
@@ -17,7 +17,7 @@ class PhotoUploadForm(forms.ModelForm):
 class PhotoEditForm(forms.ModelForm):
     
     class Meta:
-        model = Image
+        model = Photo
         exclude = ('member','photoset','title_slug','effect','crop_from','image')
         
     def __init__(self, user=None, *args, **kwargs):

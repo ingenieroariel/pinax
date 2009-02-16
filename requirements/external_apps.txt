@@ -11,7 +11,7 @@ django-notification
 django-pagination
 django-robots
 django-messages
-http://django-photologue.googlecode.com/files/photologue-2.1.zip
+django-imagekit
 django-wikiapp==0.1.1
 
 # Apps that are installed "directly" non-editable because they lack a
