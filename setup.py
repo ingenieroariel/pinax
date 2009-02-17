@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='ariel-pinax',
+    name='pinax',
     version='0.7.0',
     description='Ariels fork of Pinax, a platform for rapidly developing websites.',
     author='Ariel Nunez',
