@@ -134,7 +134,6 @@ def project(request, slug, template_name="projects/project.html"):
         raise Http404
     
     photos = project.photos.all()
-    
     if request.user.is_authenticated() and request.method == "POST" and request.user == project.creator:
         if request.POST["action"] == "update":
             adduser_form = AddUserForm(project=project)
